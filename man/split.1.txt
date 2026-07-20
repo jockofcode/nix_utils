@@ -1,0 +1,88 @@
+SPLIT(1)                         User Commands                         SPLIT(1)
+
+NAME
+    split - chop a big file into smaller pieces
+
+WHAT IT DOES
+    split takes one large file and splits it into smaller files. Each
+    piece gets an automatically numbered name. You can split by number
+    of lines, number of bytes, or number of pieces.
+
+    This is useful when a file is too large to send by email or to fit
+    on a storage device, or when you want to process parts of a file
+    in parallel.
+
+HOW TO USE IT
+    split [options] [INPUT [PREFIX]]
+
+    PREFIX is the base name for the output files. Default is "x".
+    The pieces are named PREFIX + a suffix like aa, ab, ac...
+
+OPTIONS
+    -l N, --lines=N
+        Put at most N lines in each output file. Default is 1000.
+
+    -b SIZE, --bytes=SIZE
+        Put at most SIZE bytes in each output file.
+        You can add a suffix: K (kilobytes), M (megabytes), G (gigabytes).
+
+    -n N, --number=N
+        Split into exactly N equal pieces.
+
+    -a N, --suffix-length=N
+        Use N characters for the suffix part. Default is 2 (aa, ab...).
+
+    --additional-suffix=SUFFIX
+        Add SUFFIX at the very end of each piece's name.
+
+    -d
+        Use numeric suffixes (00, 01, 02...) instead of letters (aa, ab...).
+
+    -v, --verbose
+        Print a message for each output file as it is created.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    split bigfile.txt
+        Split into 1000-line pieces named xaa, xab, xac...
+
+    split -l 500 story.txt part_
+        Split into 500-line pieces named part_aa, part_ab...
+
+    split -b 1M archive.tar part_
+        Split into 1-megabyte pieces.
+
+    split -n 4 data.txt section_
+        Split into exactly 4 equal pieces.
+
+    cat part_* > bigfile_restored.txt
+        Rejoin all the pieces back into one file.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               SPLIT(1)

@@ -1,0 +1,75 @@
+BASE64(1)                        User Commands                        BASE64(1)
+
+NAME
+    base64 - turn any data into safe text, or turn that text back
+
+WHAT IT DOES
+    base64 takes any file and turns it into a string of letters, numbers,
+    and symbols that are safe to put in emails, web pages, or anywhere
+    that only handles regular text. It can also go the other way and turn
+    that safe text back into the original data.
+
+    Think of it like a secret code where every piece of data gets turned
+    into regular letters so it can travel safely.
+
+HOW TO USE IT
+    base64 [options] [FILE]
+    base64 --decode [options] [FILE]
+
+    When no FILE is given, base64 reads from the keyboard (standard input).
+
+OPTIONS
+    -d, --decode
+        Go the other way: take base64 text and turn it back into the
+        original data.
+
+    -i, --ignore-garbage
+        When decoding, skip over any characters that are not part of
+        base64. Useful when the input has extra spaces or line endings.
+
+    -w N, --wrap=N
+        Wrap the output at N characters per line (default is 76).
+        Use -w 0 to turn off wrapping entirely.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    base64 photo.jpg > photo.txt
+        Turn a photo into base64 text saved in photo.txt.
+
+    base64 --decode photo.txt > photo.jpg
+        Turn the base64 text back into the original photo.
+
+    echo "hello" | base64
+        Turn the word "hello" into base64 right away.
+
+    echo "aGVsbG8K" | base64 --decode
+        Turn base64 text back into the original word.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                              BASE64(1)

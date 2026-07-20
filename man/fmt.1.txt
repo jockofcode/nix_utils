@@ -1,0 +1,75 @@
+FMT(1)                           User Commands                           FMT(1)
+
+NAME
+    fmt - reformat text paragraphs to a target line width
+
+WHAT IT DOES
+    fmt takes paragraphs of text and reformats them so each line is
+    not too long and not too short. It joins short lines together and
+    wraps long lines to fit within the target width (default: 75
+    characters). Blank lines separate paragraphs and are kept as-is.
+
+    This is useful for cleaning up text files or emails where the lines
+    are too long or poorly wrapped.
+
+HOW TO USE IT
+    fmt [options] [FILE]...
+
+    When no FILE is given, fmt reads from standard input.
+
+OPTIONS
+    -w N, --width=N
+        Wrap lines at N characters wide. Default is 75.
+
+    -s, --split-only
+        Only split long lines; do not join short lines together.
+
+    -u, --uniform-spacing
+        Put exactly one space between words (two after a period).
+
+    -p PREFIX, --prefix=PREFIX
+        Only reformat lines that begin with PREFIX, keeping PREFIX
+        on each line.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    fmt long_email.txt
+        Reformat the email to 75 characters per line.
+
+    fmt -w 60 notes.txt
+        Reformat notes.txt to fit in 60 characters.
+
+    fmt -s wide.txt
+        Only split lines that are too long; leave short ones alone.
+
+    cat messy.txt | fmt > clean.txt
+        Reformat and save to a new file.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                FMT(1)

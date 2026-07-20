@@ -1,0 +1,69 @@
+FACTOR(1)                        User Commands                        FACTOR(1)
+
+NAME
+    factor - break a number down into its prime factors
+
+WHAT IT DOES
+    Every whole number bigger than 1 can be broken down into a set of
+    prime numbers that multiply together to make it. Those are called
+    prime factors. For example, 12 = 2 × 2 × 3.
+
+    factor does this automatically. You give it a number and it prints
+    all the prime factors for that number.
+
+HOW TO USE IT
+    factor [options] [NUMBER]...
+
+    You can give numbers as arguments, or type them one per line when
+    no arguments are given (press Ctrl+D when done).
+
+OPTIONS
+    -h, --exponents
+        Show repeated factors using exponent notation.
+        For example: 12 = 2^2 3  instead of  12 = 2 2 3.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    factor 12
+        Prints: 12: 2 2 3
+
+    factor 100
+        Prints: 100: 2 2 5 5
+
+    factor -h 100
+        Prints: 100: 2^2 5^2
+
+    factor 17
+        Prints: 17: 17   (17 is already a prime number)
+
+    factor 12 100 17
+        Factors all three numbers at once.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                              FACTOR(1)

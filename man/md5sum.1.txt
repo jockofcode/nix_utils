@@ -1,0 +1,86 @@
+MD5SUM(1)                        User Commands                        MD5SUM(1)
+
+NAME
+    md5sum - calculate or check MD5 fingerprints for files
+
+WHAT IT DOES
+    md5sum creates a fingerprint (called a checksum) for each file using
+    a formula called MD5. The fingerprint is a 32-character string of
+    letters and numbers. If two files have the same fingerprint, they
+    contain exactly the same data. If even one byte is different, the
+    fingerprints will not match.
+
+    You can also use md5sum to check whether files you downloaded are
+    still correct and have not been corrupted.
+
+    Note: MD5 is useful for checking accidental file corruption, but is
+    not secure enough for protecting against deliberate tampering. For
+    security use sha256sum or sha512sum instead.
+
+HOW TO USE IT
+    md5sum [options] [FILE]...
+
+    When no FILE is given, md5sum reads from standard input.
+
+OPTIONS
+    -b, --binary
+        Read the file in binary mode (marks output with *).
+
+    -c, --check
+        Read fingerprints from FILE and check that the files still match.
+
+    --tag
+        Print the result in BSD style: MD5 (filename) = fingerprint.
+
+    --quiet
+        When checking, only report files that FAILED, not the ones that
+        passed.
+
+    --status
+        When checking, do not print anything; use the exit code only.
+
+    -w, --warn
+        When checking, warn about lines that are not valid fingerprint lines.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    md5sum photo.jpg
+        Print the MD5 fingerprint for photo.jpg.
+
+    md5sum *.txt > checksums.txt
+        Save the fingerprints of all .txt files.
+
+    md5sum -c checksums.txt
+        Check that all files still match their saved fingerprints.
+
+SEE ALSO
+    sha256sum(1), sha512sum(1), cksum(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                              MD5SUM(1)

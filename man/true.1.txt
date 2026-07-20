@@ -1,0 +1,67 @@
+TRUE(1)                          User Commands                          TRUE(1)
+
+NAME
+    true - do nothing and report success
+
+WHAT IT DOES
+    true does absolutely nothing and then exits with a success code (0).
+    This tells the shell that everything went fine, even though nothing
+    actually happened.
+
+    This sounds useless, but it is helpful in shell scripts when you
+    need to force a success condition, make a loop run forever, or
+    fill in a placeholder command.
+
+    See also false(1), which does nothing but reports failure.
+
+HOW TO USE IT
+    true
+
+OPTIONS
+    true ignores all arguments and options, including --help.
+
+EXAMPLES
+    true
+        Does nothing, exits with status 0 (success).
+
+    true && echo "This always prints"
+        Since true reports success, the echo always runs.
+
+    true || echo "This never prints"
+        Since true reports success, the echo never runs.
+
+    while true; do
+      echo "This loops forever"
+      sleep 1
+    done
+        A loop that runs until you press Ctrl+C.
+
+SEE ALSO
+    false(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               TRUE(1)

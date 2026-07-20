@@ -1,0 +1,66 @@
+DIRNAME(1)                       User Commands                       DIRNAME(1)
+
+NAME
+    dirname - get the folder part of a file path
+
+WHAT IT DOES
+    When you have a full path like /home/alice/documents/report.txt,
+    dirname gives you just the folder part: /home/alice/documents.
+    It is the opposite of basename, which gives you the file name.
+
+    Think of it like cutting the file name off the end of an address so
+    you only keep the street and city part.
+
+    If the path has no folder (just a file name), dirname prints a dot
+    (.) to mean "the current folder."
+
+HOW TO USE IT
+    dirname NAME...
+
+OPTIONS
+    -z, --zero
+        End each output line with a zero byte instead of a newline.
+        This helps other programs that handle file names with spaces.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    dirname /home/alice/report.txt
+        Prints: /home/alice
+
+    dirname /usr/bin/grep
+        Prints: /usr/bin
+
+    dirname report.txt
+        Prints: .   (meaning the current directory)
+
+    dirname /
+        Prints: /
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                             DIRNAME(1)

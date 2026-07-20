@@ -1,0 +1,71 @@
+PRINTENV(1)                      User Commands                      PRINTENV(1)
+
+NAME
+    printenv - print the value of environment variables
+
+WHAT IT DOES
+    printenv shows you the values of environment variables. Environment
+    variables are named settings that programs can read. For example,
+    HOME holds the path to your home folder, and PATH lists the folders
+    the computer searches for programs.
+
+    If you give printenv a variable name, it prints just that variable's
+    value. With no arguments, it prints all variables.
+
+HOW TO USE IT
+    printenv [options] [VARIABLE]...
+
+OPTIONS
+    -0, --null
+        End each output line with a zero byte instead of a newline.
+        This helps other programs that handle values containing newlines.
+
+    --help
+        Show a short help message and quit.
+
+EXIT STATUS
+    If any named variable is not set, printenv exits with status 1.
+    Otherwise it exits with 0.
+
+EXAMPLES
+    printenv
+        Print all environment variables (sorted alphabetically).
+
+    printenv HOME
+        Print the value of HOME, for example: /home/alice
+
+    printenv PATH
+        Print the list of program search directories.
+
+    printenv HOME USER
+        Print the values of HOME and USER on separate lines.
+
+SEE ALSO
+    env(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                            PRINTENV(1)

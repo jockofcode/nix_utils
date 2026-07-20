@@ -1,0 +1,80 @@
+ID(1)                            User Commands                            ID(1)
+
+NAME
+    id - show who you are logged in as
+
+WHAT IT DOES
+    id prints information about your user account on the computer.
+    Every user has a user ID number (UID) and belongs to one or more
+    groups that have group ID numbers (GID). id shows all of these.
+
+    This is useful for checking your permissions or understanding why
+    you can or cannot access certain files.
+
+HOW TO USE IT
+    id [options] [USER]
+
+    When no USER is given, id shows information about you (the current user).
+
+OPTIONS
+    -u, --user
+        Print only your user ID number.
+
+    -g, --group
+        Print only your primary group ID number.
+
+    -G, --groups
+        Print all group ID numbers you belong to.
+
+    -n, --name
+        Print the name instead of the number. Use with -u, -g, or -G.
+
+    -r, --real
+        Print the real ID instead of the effective ID. Use with -u or -g.
+
+    -z, --zero
+        Separate output with zero bytes instead of spaces or newlines.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    id
+        Print all information about yourself.
+        Example output: uid=1000(alice) gid=1000(alice) groups=1000(alice),4(adm)
+
+    id -u
+        Print just your user ID number.
+
+    id -un
+        Print just your username.
+
+    id bob
+        Print information about the user named bob.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                 ID(1)

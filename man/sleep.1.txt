@@ -1,0 +1,68 @@
+SLEEP(1)                         User Commands                         SLEEP(1)
+
+NAME
+    sleep - pause for a set amount of time
+
+WHAT IT DOES
+    sleep makes the terminal wait for a specified amount of time before
+    doing anything else. You can give it a number of seconds, or use
+    suffixes for minutes, hours, or days. You can also combine multiple
+    times by listing them as separate arguments.
+
+    This is very useful in scripts when you want to wait between steps.
+
+HOW TO USE IT
+    sleep NUMBER[SUFFIX]...
+
+    NUMBER can be a whole number or a decimal. SUFFIX can be:
+      s  seconds (the default)
+      m  minutes
+      h  hours
+      d  days
+
+OPTIONS
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    sleep 5
+        Wait 5 seconds.
+
+    sleep 2.5
+        Wait 2.5 seconds.
+
+    sleep 1m
+        Wait 1 minute.
+
+    sleep 1h 30m
+        Wait 1 hour and 30 minutes.
+
+    echo "Starting..."; sleep 3; echo "Done!"
+        Print a message, wait 3 seconds, then print another.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               SLEEP(1)

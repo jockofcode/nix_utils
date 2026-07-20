@@ -1,0 +1,78 @@
+COLUMN(1)                        User Commands                        COLUMN(1)
+
+NAME
+    column - line up text into neat columns
+
+WHAT IT DOES
+    column takes lines of text and arranges them into tidy columns, like
+    a table. This makes lists of information much easier to read.
+
+    For example, a messy list of names and ages separated by commas can be
+    turned into a clean table where everything lines up perfectly.
+
+HOW TO USE IT
+    column [options] [FILE]...
+
+    When no FILE is given, column reads from standard input.
+
+OPTIONS
+    -t, --table
+        Table mode. Treats each line as a row and lines up all the
+        fields into aligned columns.
+
+    -s SEP, --separator=SEP, --input-separator=SEP
+        Use SEP as the character that separates fields.
+        Default is any whitespace (spaces or tabs).
+
+    -o SEP, --output-separator=SEP
+        Use SEP between columns in the output. Default is two spaces.
+
+    -c N, --output-width=N
+        Try to fit the output into N characters wide when not in
+        table mode.
+
+    -x, --fillrows
+        Fill columns across instead of down when displaying a list.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    column -t data.txt
+        Neatly align the fields in data.txt as a table.
+
+    echo -e "name,age\nalice,10\nbob,11" | column -t -s ","
+        Turn comma-separated data into a table:
+          name   age
+          alice  10
+          bob    11
+
+    ls | column -c 80
+        List files arranged in columns fitting 80 characters wide.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                              COLUMN(1)

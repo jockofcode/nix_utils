@@ -1,0 +1,79 @@
+BASENAME(1)                      User Commands                      BASENAME(1)
+
+NAME
+    basename - get just the file name from a full path
+
+WHAT IT DOES
+    When you have a long path like /home/alice/documents/report.txt,
+    basename gives you just the last part: report.txt. It can also remove
+    a file ending (like .txt) if you tell it to.
+
+    Think of it like cutting off the address part of a mailing label so
+    you only see the person's name.
+
+HOW TO USE IT
+    basename NAME [SUFFIX]
+    basename [options] NAME...
+
+OPTIONS
+    SUFFIX
+        If the name ends with SUFFIX, remove it too.
+        Example: basename report.txt .txt gives you report.
+
+    -a, --multiple
+        Allow more than one name at a time (one per line of output).
+
+    -s SUFFIX, --suffix=SUFFIX
+        Remove this ending from each name. Use this with -a when
+        processing multiple names.
+
+    -z, --zero
+        End each output line with a zero byte instead of a newline.
+        This helps other programs that handle file names with spaces.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    basename /home/alice/report.txt
+        Prints: report.txt
+
+    basename /home/alice/report.txt .txt
+        Prints: report
+
+    basename -a /foo/bar /baz/qux
+        Prints:
+          bar
+          qux
+
+    basename -a -s .txt /docs/a.txt /docs/b.txt
+        Prints:
+          a
+          b
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                            BASENAME(1)

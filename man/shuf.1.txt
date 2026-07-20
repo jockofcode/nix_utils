@@ -1,0 +1,80 @@
+SHUF(1)                          User Commands                          SHUF(1)
+
+NAME
+    shuf - randomly shuffle lines
+
+WHAT IT DOES
+    shuf takes a list of lines and mixes them up in a random order,
+    then prints the shuffled result. This is like shuffling a deck of
+    cards — all the same lines come out, just in a random order.
+
+    You can also use shuf to pick a random sample from a list.
+
+HOW TO USE IT
+    shuf [options] [FILE]
+    shuf -e [options] [ARG]...
+    shuf -i LO-HI [options]
+
+    When no FILE is given, shuf reads from standard input.
+
+OPTIONS
+    -e, --echo
+        Treat each argument as a line to shuffle, instead of reading
+        from a file.
+
+    -i LO-HI, --input-range=LO-HI
+        Generate and shuffle numbers from LO to HI.
+
+    -n N, --head-count=N
+        Only output N lines from the shuffled result.
+        Useful for picking a random sample.
+
+    -r, --repeat
+        Lines can be picked more than once. Use with -n to draw N
+        samples with replacement.
+
+    -o FILE, --output=FILE
+        Write the output to FILE instead of the screen.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    shuf names.txt
+        Print the names in a random order.
+
+    shuf -n 1 choices.txt
+        Pick one random line from the file.
+
+    shuf -e apple banana cherry
+        Pick a random order for these three items.
+
+    shuf -i 1-100 -n 5
+        Pick 5 random numbers between 1 and 100.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               SHUF(1)

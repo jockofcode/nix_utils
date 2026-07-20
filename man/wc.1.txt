@@ -1,0 +1,83 @@
+WC(1)                            User Commands                            WC(1)
+
+NAME
+    wc - count lines, words, and characters in a file
+
+WHAT IT DOES
+    wc (word count) counts things in files: how many lines, how many
+    words, and how many bytes (or characters). By default it shows all
+    three counts. With options, you can pick just the one you want.
+
+    When given multiple files, wc also prints a total line at the end.
+
+HOW TO USE IT
+    wc [options] [FILE]...
+
+    When no FILE is given, wc reads from standard input.
+
+OPTIONS
+    -l, --lines
+        Count only lines.
+
+    -w, --words
+        Count only words (sequences of characters separated by spaces).
+
+    -c, --bytes
+        Count only bytes.
+
+    -m, --chars
+        Count only characters (same as bytes for ASCII text, but
+        different for multi-byte characters like emojis).
+
+    -L, --max-line-length
+        Print the length of the longest line in the file.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    wc essay.txt
+        Print the line count, word count, and byte count.
+        Example output:  42  356 2048 essay.txt
+
+    wc -l log.txt
+        Count only the number of lines.
+
+    wc -w story.txt
+        Count only the number of words.
+
+    wc -c photo.jpg
+        Show the file size in bytes.
+
+    wc *.txt
+        Count all three totals for every .txt file, plus a grand total.
+
+    cat file.txt | wc -l
+        Count lines piped from another command.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                 WC(1)

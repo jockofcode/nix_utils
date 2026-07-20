@@ -1,0 +1,93 @@
+CAT(1)                           User Commands                           CAT(1)
+
+NAME
+    cat - print one or more files to the screen
+
+WHAT IT DOES
+    cat reads files one after another and prints everything to the screen.
+    The name comes from "concatenate," which means to join things end to end.
+    You can also use it to see what is inside a short file quickly, or to
+    glue several files together into one big output.
+
+    When no file is given (or when a file is named "-"), cat reads whatever
+    you type at the keyboard.
+
+HOW TO USE IT
+    cat [options] [FILE]...
+
+OPTIONS
+    -n, --number
+        Put a number at the start of every line.
+
+    -b, --number-nonblank
+        Put a number at the start of every line that is not empty.
+        This overrides -n.
+
+    -s, --squeeze-blank
+        When there are several blank lines in a row, collapse them
+        into just one blank line.
+
+    -E, --show-ends
+        Show a dollar sign ($) at the end of each line so you can
+        see exactly where lines end.
+
+    -T, --show-tabs
+        Show tab characters as ^I so you can see where tabs are.
+
+    -A, --show-all
+        Same as turning on -E and -T at the same time.
+
+    -e
+        Same as -E (show line endings).
+
+    -t
+        Same as -T (show tabs).
+
+    -v, --show-nonprinting
+        Show invisible control characters using ^ and M- notation.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    cat notes.txt
+        Print the contents of notes.txt.
+
+    cat file1.txt file2.txt
+        Print file1.txt then file2.txt one after the other.
+
+    cat -n story.txt
+        Print story.txt with line numbers.
+
+    cat -s messy.txt
+        Print messy.txt but squish repeated blank lines into one.
+
+    cat file1.txt file2.txt > combined.txt
+        Join both files and save the result to combined.txt.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                CAT(1)

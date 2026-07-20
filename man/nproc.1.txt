@@ -1,0 +1,71 @@
+NPROC(1)                         User Commands                         NPROC(1)
+
+NAME
+    nproc - print how many processor cores are available
+
+WHAT IT DOES
+    nproc tells you how many processor cores your computer can use for
+    running programs. Programs that can work on many things at once
+    (in parallel) use this number to decide how many tasks to run
+    at the same time.
+
+    By default it shows how many cores are available to the current
+    process, which may be less than the total if the system has limited
+    your access.
+
+HOW TO USE IT
+    nproc [options]
+
+OPTIONS
+    --all
+        Show the total number of processors installed in the computer,
+        not just the ones currently available to you.
+
+    --ignore=N
+        Subtract N from the result, but never go below 1.
+        This leaves N cores free for other things.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    nproc
+        Print the number of available processor cores.
+        Example output: 8
+
+    nproc --all
+        Print the total number of installed processors.
+
+    nproc --ignore=2
+        Print the number of cores minus 2, useful to avoid using
+        all cores and freezing the computer.
+
+    make -j$(nproc)
+        Compile a program using all available cores.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                              NPROC(1)

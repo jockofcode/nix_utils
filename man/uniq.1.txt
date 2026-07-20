@@ -1,0 +1,92 @@
+UNIQ(1)                          User Commands                          UNIQ(1)
+
+NAME
+    uniq - remove or report duplicate lines that are next to each other
+
+WHAT IT DOES
+    uniq filters adjacent duplicate lines from a file. If the same line
+    appears two or more times in a row, uniq collapses them into one.
+    Lines must be next to each other to be considered duplicates — run
+    sort first if you want all duplicates removed regardless of position.
+
+    uniq can also count how many times each line appeared, or show only
+    the duplicate or unique lines.
+
+HOW TO USE IT
+    uniq [options] [INPUT [OUTPUT]]
+
+    When no INPUT is given, uniq reads from standard input.
+    When OUTPUT is given, the result is written there instead of the screen.
+
+OPTIONS
+    -c, --count
+        Before each line, print how many times it appeared in a row.
+
+    -d, --repeated
+        Only print lines that appeared more than once.
+
+    -u, --unique
+        Only print lines that appeared exactly once.
+
+    -i, --ignore-case
+        Ignore upper/lower case differences when comparing lines.
+
+    -f N, --skip-fields=N
+        Ignore the first N fields (space-separated words) when
+        comparing lines.
+
+    -s N, --skip-chars=N
+        Ignore the first N characters when comparing lines.
+
+    -w N, --check-chars=N
+        Only compare the first N characters of each line.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    sort names.txt | uniq
+        Sort names and remove all duplicates.
+
+    sort names.txt | uniq -c
+        Show how many times each name appears.
+        Example output:
+              3 alice
+              1 bob
+              2 carol
+
+    sort names.txt | uniq -d
+        Show only names that appeared more than once.
+
+    sort names.txt | uniq -u
+        Show only names that appeared exactly once.
+
+SEE ALSO
+    sort(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               UNIQ(1)

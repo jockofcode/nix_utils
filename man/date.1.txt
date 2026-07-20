@@ -1,0 +1,81 @@
+DATE(1)                          User Commands                          DATE(1)
+
+NAME
+    date - show the current date and time
+
+WHAT IT DOES
+    date prints the current date and time. You can choose exactly how
+    you want it to look by using a format string. For example, you can
+    ask for just the year, just the month, or a full date like
+    "Monday, July 20, 2026."
+
+HOW TO USE IT
+    date [options] [+FORMAT]
+
+OPTIONS
+    +FORMAT
+        A string starting with + that describes how to display the date.
+        Common format pieces:
+          %Y   four-digit year (e.g. 2026)
+          %m   month number (01-12)
+          %d   day of the month (01-31)
+          %H   hour in 24-hour time (00-23)
+          %M   minutes (00-59)
+          %S   seconds (00-59)
+          %A   full weekday name (e.g. Monday)
+          %B   full month name (e.g. July)
+          %s   seconds since January 1, 1970 (Unix time)
+
+    -u, --utc, --universal
+        Show the time in UTC (Coordinated Universal Time) instead of
+        your local time zone.
+
+    -d STRING, --date=STRING
+        Show the date described by STRING instead of right now.
+        Example: -d "2026-01-01" or -d "next Monday".
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    date
+        Print the current date and time in the default format.
+
+    date "+%Y-%m-%d"
+        Print today's date as: 2026-07-20
+
+    date "+%B %d, %Y"
+        Print today's date as: July 20, 2026
+
+    date -u
+        Print the current time in UTC.
+
+    date "+%s"
+        Print how many seconds have passed since January 1, 1970.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               DATE(1)

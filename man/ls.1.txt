@@ -1,0 +1,109 @@
+LS(1)                            User Commands                            LS(1)
+
+NAME
+    ls - list the files and folders in a directory
+
+WHAT IT DOES
+    ls shows you what is inside a folder. By default it lists the files
+    and folders in the current directory in alphabetical order. You can
+    also ask it to show extra details like file sizes, dates, and
+    permissions.
+
+HOW TO USE IT
+    ls [options] [FILE]...
+
+    When no FILE is given, ls lists the current directory.
+
+OPTIONS
+    -l
+        Long format. Show details including permissions, owner, size,
+        and date for each item.
+
+    -a, --all
+        Show all files, including hidden ones that start with a dot.
+
+    -A, --almost-all
+        Show hidden files but not . (current dir) or .. (parent dir).
+
+    -h, --human-readable
+        Show file sizes in easy-to-read form like 4.0K, 2.5M, 1.1G.
+        Use with -l.
+
+    -r, --reverse
+        Sort in reverse order.
+
+    -t
+        Sort by modification time, newest first.
+
+    -S
+        Sort by file size, largest first.
+
+    -R, --recursive
+        List sub-folders and their contents too.
+
+    -d, --directory
+        Show information about the directory itself, not its contents.
+
+    -1
+        Print one file per line.
+
+    -F, --classify
+        Add a symbol after each entry:
+          /  for directories
+          *  for executable files
+          @  for symbolic links
+
+    -i, --inode
+        Print the inode number before each file name.
+
+    -n, --numeric-uid-gid
+        Like -l but show numbers instead of user and group names.
+
+    --color[=WHEN]
+        Color the output. WHEN can be: always, auto, never.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    ls
+        List files in the current directory.
+
+    ls -la
+        List all files including hidden ones, with details.
+
+    ls -lh /home/alice/
+        List the contents of /home/alice/ with readable file sizes.
+
+    ls -lt
+        List files sorted by modification time, newest first.
+
+    ls -R
+        List everything in the current folder and all sub-folders.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                 LS(1)

@@ -1,0 +1,77 @@
+TAIL(1)                          User Commands                          TAIL(1)
+
+NAME
+    tail - show the last few lines of a file
+
+WHAT IT DOES
+    tail prints the last 10 lines of a file (or a number of lines you
+    choose). This is great for checking the end of a log file to see
+    the most recent events, or for looking at the end of any text file.
+
+    When given more than one file, tail shows a header before each one.
+
+HOW TO USE IT
+    tail [options] [FILE]...
+
+    When no FILE is given, tail reads from standard input.
+
+OPTIONS
+    -n N, --lines=N
+        Show the last N lines instead of the default 10.
+        Use -n +N (with a plus sign) to start from line N and
+        print everything from there to the end.
+
+    -c N, --bytes=N
+        Show the last N bytes instead of lines.
+
+    -q, --quiet, --silent
+        Do not print the file name headers when reading multiple files.
+
+    -v, --verbose
+        Always print the file name header, even for just one file.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    tail log.txt
+        Print the last 10 lines of log.txt.
+
+    tail -n 20 log.txt
+        Print the last 20 lines.
+
+    tail -n +5 file.txt
+        Print everything starting from line 5 to the end.
+
+    tail -n 5 file1.txt file2.txt
+        Print the last 5 lines of each file with headers.
+
+SEE ALSO
+    head(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               TAIL(1)

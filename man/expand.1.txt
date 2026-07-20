@@ -1,0 +1,75 @@
+EXPAND(1)                        User Commands                        EXPAND(1)
+
+NAME
+    expand - change tab characters into spaces
+
+WHAT IT DOES
+    expand reads a file and replaces every tab character with the right
+    number of spaces so the text lines up the same way it would on a
+    screen where tabs jump to every 8th column. You can change how wide
+    the tabs are with the -t option.
+
+    This is useful when you want to share text files and make sure they
+    look the same on every screen, or when a program does not handle
+    tabs well.
+
+HOW TO USE IT
+    expand [options] [FILE]...
+
+    When no FILE is given, expand reads from standard input.
+
+OPTIONS
+    -t N, --tabs=N
+        Set tab stops every N columns (default is 8). For example,
+        -t 4 makes tabs 4 spaces wide.
+
+    -t LIST
+        Set tab stops at specific column numbers, separated by commas.
+        Example: -t 4,8,12 puts tab stops at columns 4, 8, and 12.
+
+    -i, --initial
+        Only replace tabs at the beginning of each line, not in
+        the middle of lines.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    expand code.rb
+        Replace all tabs in code.rb with spaces (8 columns each).
+
+    expand -t 4 code.rb
+        Replace tabs with 4-space indents.
+
+    expand code.rb > code_spaces.rb
+        Save the expanded version to a new file.
+
+SEE ALSO
+    unexpand(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                              EXPAND(1)

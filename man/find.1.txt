@@ -1,0 +1,107 @@
+FIND(1)                          User Commands                          FIND(1)
+
+NAME
+    find - search for files and folders
+
+WHAT IT DOES
+    find searches through folders and their sub-folders to locate files
+    that match conditions you describe. You can search by name, size,
+    type, date, or other properties.
+
+    For example, you can find all photos larger than 1 MB, or all text
+    files whose names end in .txt, or all folders named "backup."
+
+HOW TO USE IT
+    find [PATH]... [EXPRESSION]
+
+    When no PATH is given, find searches the current directory.
+
+COMMON TESTS
+    -name PATTERN
+        Find files whose name matches PATTERN. Use * as a wildcard.
+        Example: -name "*.txt" finds all text files.
+
+    -iname PATTERN
+        Same as -name but ignores upper/lower case differences.
+
+    -type TYPE
+        Find only entries of this type:
+          f  regular file
+          d  directory (folder)
+          l  symbolic link
+
+    -size N[ckMG]
+        Find files of this size. Add + for larger-than, - for smaller-than.
+        Example: -size +1M finds files larger than 1 megabyte.
+
+    -mtime N
+        Find files modified N days ago. Use +N for more than N days ago.
+
+    -newer FILE
+        Find files newer than FILE.
+
+COMMON ACTIONS
+    -print
+        Print the path of each found file (this is the default action).
+
+    -delete
+        Delete each found file. Be careful!
+
+    -exec COMMAND {} \;
+        Run COMMAND on each found file. {} is replaced with the file path.
+
+OPTIONS
+    -maxdepth N
+        Do not go deeper than N levels into sub-folders.
+
+    -mindepth N
+        Do not look at anything less than N levels deep.
+
+    -not, !
+        Reverse the next test (find things that do NOT match).
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    find . -name "*.txt"
+        Find all .txt files starting from the current directory.
+
+    find /home -type d -name "photos"
+        Find all folders named "photos" in /home.
+
+    find . -size +1M
+        Find all files larger than 1 megabyte.
+
+    find . -name "*.log" -delete
+        Delete all .log files in the current folder tree.
+
+    find . -name "*.rb" -exec wc -l {} \;
+        Count the lines in every Ruby file found.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               FIND(1)

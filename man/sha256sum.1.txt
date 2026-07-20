@@ -1,0 +1,88 @@
+SHA256SUM(1)                     User Commands                     SHA256SUM(1)
+
+NAME
+    sha256sum - calculate or check SHA-256 fingerprints for files
+
+WHAT IT DOES
+    sha256sum creates a 64-character SHA-256 fingerprint (checksum) for
+    each file. SHA-256 is a widely trusted secure hash algorithm that
+    produces a fingerprint that is practically impossible to fake.
+
+    This is one of the best tools for verifying that a file you downloaded
+    has not been tampered with or corrupted.
+
+HOW TO USE IT
+    sha256sum [options] [FILE]...
+
+    When no FILE is given, sha256sum reads from standard input.
+
+OPTIONS
+    -b, --binary
+        Read the file in binary mode (marks output with *).
+
+    -c, --check
+        Read fingerprints from FILE and check that the files still match.
+
+    --tag
+        Print results in BSD style: SHA256 (filename) = fingerprint.
+
+    --quiet
+        When checking, only report files that FAILED.
+
+    --status
+        When checking, do not print anything; just use the exit code.
+
+    --ignore-missing
+        When checking, skip files that are listed but do not exist.
+
+    --strict
+        When checking, fail if any checksum lines are badly formatted.
+
+    -w, --warn
+        When checking, warn about badly formatted checksum lines.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    sha256sum installer.pkg
+        Print the SHA-256 fingerprint for installer.pkg.
+
+    sha256sum *.iso > checksums.txt
+        Save fingerprints for all .iso files.
+
+    sha256sum -c checksums.txt
+        Check that all files still match their saved fingerprints.
+
+    echo "hello" | sha256sum
+        Calculate the SHA-256 of the text "hello".
+
+SEE ALSO
+    sha512sum(1), sha1sum(1), md5sum(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                           SHA256SUM(1)

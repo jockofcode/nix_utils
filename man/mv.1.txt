@@ -1,0 +1,76 @@
+MV(1)                            User Commands                            MV(1)
+
+NAME
+    mv - move or rename a file
+
+WHAT IT DOES
+    mv moves a file from one place to another, or renames it. If you
+    move a file to a new name in the same folder, it is renamed. If you
+    move it to a different folder, it is relocated. The original file
+    disappears from its old location.
+
+HOW TO USE IT
+    mv [options] SOURCE DEST
+    mv [options] SOURCE... DIRECTORY
+
+OPTIONS
+    -i, --interactive
+        Ask before overwriting a file that already exists.
+
+    -f, --force
+        Do not ask before overwriting. Silently overwrite existing files.
+
+    -n, --no-clobber
+        Never overwrite a file that already exists. The move is skipped.
+
+    -u, --update
+        Only move if SOURCE is newer than DEST, or DEST does not exist.
+
+    -v, --verbose
+        Print the name of each file as it is moved.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    mv old_name.txt new_name.txt
+        Rename a file in the same folder.
+
+    mv report.txt /backup/
+        Move report.txt into the /backup/ folder.
+
+    mv -i notes.txt /shared/
+        Move notes.txt but ask before overwriting if a file exists there.
+
+    mv -v *.log /var/logs/
+        Move all .log files and print each one as it moves.
+
+SEE ALSO
+    cp(1), rm(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                 MV(1)

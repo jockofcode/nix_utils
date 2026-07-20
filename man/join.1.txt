@@ -1,0 +1,88 @@
+JOIN(1)                          User Commands                          JOIN(1)
+
+NAME
+    join - combine two files by matching a shared field
+
+WHAT IT DOES
+    join looks at two files and finds lines that have the same value in
+    a chosen field (column). When they match, it merges them into one
+    combined line.
+
+    Think of it like combining two lists. If one list has student names
+    and IDs, and another has student IDs and grades, join can combine
+    them into one list with names, IDs, and grades all together.
+
+    Both files must be sorted on the join field before you run join.
+
+HOW TO USE IT
+    join [options] FILE1 FILE2
+
+    Use - as a filename to read from standard input.
+
+OPTIONS
+    -j N
+        Join on field number N in both files (default is field 1).
+
+    -1 N
+        Join on field N in FILE1.
+
+    -2 N
+        Join on field N in FILE2.
+
+    -t CHAR
+        Use CHAR as the field separator (default is any whitespace).
+
+    -o FORMAT
+        Control what fields appear in the output.
+        Example: -o 1.1,2.2 shows field 1 from FILE1 and field 2 from FILE2.
+
+    -a N
+        Also print lines from file N that had no matching line in the
+        other file (like a left or right join in databases).
+
+    -v N
+        Print only the lines from file N that had no match (no joined
+        output at all).
+
+    -i, --ignore-case
+        Ignore upper/lower case differences when comparing join fields.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    join names.txt grades.txt
+        Combine lines from both files that share the same first field.
+
+    join -t "," -1 2 -2 1 file1.csv file2.csv
+        Join comma-separated files on field 2 of file1 and field 1 of file2.
+
+    join -a 1 names.txt grades.txt
+        Show all lines from names.txt, including those with no match.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               JOIN(1)

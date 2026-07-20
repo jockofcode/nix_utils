@@ -1,0 +1,83 @@
+CUT(1)                           User Commands                           CUT(1)
+
+NAME
+    cut - pull out selected parts of each line in a file
+
+WHAT IT DOES
+    cut lets you pick specific columns or fields from each line of a file
+    and show only those parts. This is great for working with data files
+    where each line has several pieces of information separated by commas,
+    tabs, or other characters.
+
+    For example, if each line has a name, age, and city separated by
+    commas, you can use cut to show only the names.
+
+HOW TO USE IT
+    cut OPTION [FILE]...
+
+    You must use exactly one of -b, -c, or -f.
+    When no FILE is given, cut reads from standard input.
+
+OPTIONS
+    -b LIST, --bytes=LIST
+        Pick the byte positions listed. For example: 1,3,5 or 1-5 or 3-.
+
+    -c LIST, --characters=LIST
+        Pick the character positions listed (same as -b for ASCII text).
+
+    -f LIST, --fields=LIST
+        Pick the fields (columns) listed. Fields are separated by the
+        delimiter character (default: tab).
+
+    -d CHAR, --delimiter=CHAR
+        Use CHAR as the field separator instead of a tab. Use with -f.
+
+    -s, --only-delimited
+        Skip lines that do not contain the delimiter character.
+
+    --complement
+        Show everything except the selected parts.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    cut -f 1 names.txt
+        Show only the first field (column) of each line, using tab as
+        the separator.
+
+    cut -d "," -f 2 data.csv
+        Show the second field from a comma-separated file.
+
+    cut -c 1-10 long_lines.txt
+        Show only the first 10 characters of each line.
+
+    cut -d ":" -f 1 /etc/passwd
+        Show just the usernames from the password file.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                CUT(1)

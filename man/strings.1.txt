@@ -1,0 +1,81 @@
+STRINGS(1)                       User Commands                       STRINGS(1)
+
+NAME
+    strings - find readable text hidden inside any file
+
+WHAT IT DOES
+    strings scans through a file — even a binary file like a program or
+    image — and pulls out any sequences of printable characters that are
+    at least 4 characters long. These "strings" are often error messages,
+    file names, version numbers, or other text embedded inside programs.
+
+    This is like holding a book up to the light to find hidden writing.
+    It is very useful for learning what a program does or for examining
+    unknown files.
+
+HOW TO USE IT
+    strings [options] [FILE]...
+
+    When no FILE is given, strings reads from standard input.
+
+OPTIONS
+    -n N, --bytes=N, -N
+        Only print sequences that are at least N characters long.
+        Default is 4.
+
+    -a, --all
+        Scan the entire file. Without -a, only certain sections of
+        binary files are scanned.
+
+    -t FORMAT, --radix=FORMAT
+        Before each string, print its position (offset) in the file.
+        FORMAT chooses the number base: x (hex), d (decimal), o (octal).
+
+    -e ENCODING, --encoding=ENCODING
+        Choose which character encoding to look for:
+          s  single-byte characters (default)
+          l  16-bit little-endian
+          b  16-bit big-endian
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    strings /usr/bin/ls | head -20
+        Show the first 20 readable strings in the ls program.
+
+    strings -n 8 myprogram
+        Only show strings that are at least 8 characters long.
+
+    strings -t x mystery.bin
+        Show strings with their hex offset positions.
+
+    strings photo.jpg | grep "camera"
+        Look for camera information embedded in a photo.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                             STRINGS(1)

@@ -1,0 +1,102 @@
+SORT(1)                          User Commands                          SORT(1)
+
+NAME
+    sort - arrange lines in order
+
+WHAT IT DOES
+    sort reads lines of text and prints them in sorted order. By default
+    it sorts alphabetically (A to Z). You can change it to sort
+    numerically, in reverse, or by a specific field (column).
+
+    sort is one of the most-used tools in the command line because so
+    many other tasks need things in order.
+
+HOW TO USE IT
+    sort [options] [FILE]...
+
+    When no FILE is given, sort reads from standard input.
+
+OPTIONS
+    -n, --numeric-sort
+        Sort by the number value instead of alphabetically.
+        Use this when lines start with numbers, so 10 comes after 9
+        instead of before it.
+
+    -r, --reverse
+        Sort in reverse (Z to A or largest to smallest).
+
+    -u, --unique
+        Remove duplicate lines, keeping only one copy of each.
+
+    -k N, --key=N
+        Sort by the Nth field (column). Fields are separated by spaces.
+        Example: -k 2 sorts by the second word on each line.
+
+    -t CHAR, --field-separator=CHAR
+        Use CHAR to separate fields instead of whitespace.
+
+    -f, --ignore-case
+        Ignore upper/lower case differences when sorting.
+
+    -h, --human-numeric-sort
+        Sort numbers with size suffixes like K, M, G correctly.
+        For example: 1K, 2M, 1G in the right order.
+
+    -R, --random-sort
+        Sort in a random order (like shuffling a deck).
+
+    -o FILE, --output=FILE
+        Write the sorted output to FILE instead of the screen.
+        Safe to use with the input file itself.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    sort names.txt
+        Sort names alphabetically.
+
+    sort -n scores.txt
+        Sort numbers in order: 1, 2, 10, 20...
+
+    sort -rn scores.txt
+        Sort numbers from largest to smallest.
+
+    sort -u names.txt
+        Sort and remove duplicate names.
+
+    sort -k 2 data.txt
+        Sort by the second word on each line.
+
+    sort -t "," -k 3 data.csv
+        Sort a CSV file by the third column.
+
+SEE ALSO
+    uniq(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               SORT(1)

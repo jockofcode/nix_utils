@@ -1,0 +1,77 @@
+SHA224SUM(1)                     User Commands                     SHA224SUM(1)
+
+NAME
+    sha224sum - calculate or check SHA-224 fingerprints for files
+
+WHAT IT DOES
+    sha224sum creates a 56-character SHA-224 fingerprint (checksum) for
+    each file. SHA-224 is a variant of SHA-256 that produces a shorter
+    output. It is part of the SHA-2 family of secure hash algorithms.
+
+    This fingerprint is like a unique ID for the file's contents —
+    if the file changes even slightly, the fingerprint will be
+    completely different.
+
+HOW TO USE IT
+    sha224sum [options] [FILE]...
+
+    When no FILE is given, sha224sum reads from standard input.
+
+OPTIONS
+    -b, --binary
+        Read the file in binary mode (marks output with *).
+
+    -c, --check
+        Read fingerprints from FILE and check that the files still match.
+
+    --tag
+        Print results in BSD style: SHA224 (filename) = fingerprint.
+
+    --quiet
+        When checking, only report files that FAILED.
+
+    --status
+        When checking, do not print anything; just use the exit code.
+
+    -w, --warn
+        When checking, warn about badly formatted checksum lines.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    sha224sum document.pdf
+        Print the SHA-224 fingerprint for document.pdf.
+
+    sha224sum -c checksums.txt
+        Verify that files match their saved fingerprints.
+
+SEE ALSO
+    sha256sum(1), sha512sum(1), md5sum(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                           SHA224SUM(1)

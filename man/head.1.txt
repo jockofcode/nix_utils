@@ -1,0 +1,78 @@
+HEAD(1)                          User Commands                          HEAD(1)
+
+NAME
+    head - show the first few lines of a file
+
+WHAT IT DOES
+    head prints the first 10 lines of a file (or a number of lines you
+    choose). This is great for taking a quick peek at the beginning of
+    a file without printing the whole thing.
+
+    When given more than one file, head shows a header before each one
+    so you know which file each section came from.
+
+HOW TO USE IT
+    head [options] [FILE]...
+
+    When no FILE is given, head reads from standard input.
+
+OPTIONS
+    -n N, --lines=N
+        Show the first N lines instead of the default 10.
+        Use -n -N (with a minus sign) to print everything
+        except the last N lines.
+
+    -c N, --bytes=N
+        Show the first N bytes instead of lines.
+
+    -q, --quiet, --silent
+        Do not print the file name headers when reading multiple files.
+
+    -v, --verbose
+        Always print the file name header, even for just one file.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    head notes.txt
+        Print the first 10 lines of notes.txt.
+
+    head -n 5 notes.txt
+        Print only the first 5 lines.
+
+    head -n 20 file1.txt file2.txt
+        Print the first 20 lines of each file with headers.
+
+    head -c 100 data.bin
+        Print the first 100 bytes.
+
+SEE ALSO
+    tail(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               HEAD(1)

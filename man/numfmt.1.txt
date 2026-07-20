@@ -1,0 +1,88 @@
+NUMFMT(1)                        User Commands                        NUMFMT(1)
+
+NAME
+    numfmt - convert numbers to and from human-readable form
+
+WHAT IT DOES
+    numfmt reformats numbers on lines of text, converting between raw
+    numbers and human-friendly sizes. For example, it can convert
+    1073741824 to 1.0G, or convert 1.5K to 1500.
+
+    This is useful for making numbers in files or command output easier
+    to read, or for converting human-readable sizes back to raw numbers
+    for calculations.
+
+HOW TO USE IT
+    numfmt [options] [NUMBER]...
+
+    When no NUMBER is given, numfmt reads lines from standard input.
+
+OPTIONS
+    --from=UNIT
+        Treat the input numbers as already scaled by this unit:
+          none   plain numbers (default)
+          auto   auto-detect K, M, G etc.
+          si     1K=1000, 1M=1000000, etc.
+          iec    1K=1024, 1M=1048576, etc.
+          iec-i  same as iec but uses Ki, Mi notation
+
+    --to=UNIT
+        Scale the output to this unit (same choices as --from).
+        none prints the raw number.
+
+    --field=N
+        Which field (column) of each input line to convert.
+        Default is the first field.
+
+    --padding=N
+        Pad the output to at least N characters wide.
+
+    --round=METHOD
+        How to round when scaling: up, down, from-zero, towards-zero,
+        or nearest (default).
+
+    --suffix=SUFFIX
+        Append SUFFIX to each formatted number.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    numfmt --to=si 1000000
+        Prints: 1.0M
+
+    numfmt --to=iec 1073741824
+        Prints: 1.0G
+
+    numfmt --from=si 1.5k
+        Prints: 1500
+
+    du -b | numfmt --from=none --to=si
+        Show disk usage in human-readable sizes.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                              NUMFMT(1)

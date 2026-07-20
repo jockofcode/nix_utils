@@ -1,0 +1,88 @@
+DU(1)                            User Commands                            DU(1)
+
+NAME
+    du - find out how much disk space files and folders are using
+
+WHAT IT DOES
+    du (disk usage) tells you how much storage space a file or folder
+    takes up on your disk. If you give it a folder, it will check the
+    folder and everything inside it. This helps you find out which files
+    or folders are taking up the most space.
+
+HOW TO USE IT
+    du [options] [FILE]...
+
+    When no FILE is given, du checks the current directory.
+
+OPTIONS
+    -h, --human-readable
+        Show sizes in easy-to-read form like 4.0K, 2.5M, or 1.1G
+        instead of raw numbers.
+
+    -s, --summarize
+        Show only the total for each argument, not each sub-folder.
+
+    -a, --all
+        Show sizes for individual files too, not just directories.
+
+    -c, --total
+        After all results, print a grand total.
+
+    -d N, --max-depth=N
+        Only go N levels deep into sub-folders. -d 1 shows only the
+        immediate contents of a folder.
+
+    -k
+        Show sizes in kilobytes (1024 bytes each).
+
+    -m
+        Show sizes in megabytes.
+
+    --si
+        Use 1000-based sizes (kB, MB, GB) instead of 1024-based.
+
+    -b, --bytes
+        Show the exact number of bytes each file takes.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    du -h documents/
+        Show how much space the documents folder uses, in readable form.
+
+    du -sh downloads/
+        Show just the total size of the downloads folder.
+
+    du -h -d 1 /home/alice/
+        Show sizes of each folder one level deep in /home/alice/.
+
+    du -ah | sort -h
+        Show all files and folders sorted from smallest to largest.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                 DU(1)

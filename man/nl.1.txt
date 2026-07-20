@@ -1,0 +1,87 @@
+NL(1)                            User Commands                            NL(1)
+
+NAME
+    nl - add line numbers to a file
+
+WHAT IT DOES
+    nl reads a file and prints it with line numbers added at the beginning
+    of each line. It is similar to cat -n but gives you more control over
+    which lines get numbered and how the numbers look.
+
+    By default, nl numbers only non-empty lines and leaves blank lines
+    without numbers.
+
+HOW TO USE IT
+    nl [options] [FILE]...
+
+    When no FILE is given, nl reads from standard input.
+
+OPTIONS
+    -b STYLE, --body-numbering=STYLE
+        Choose which lines in the main body to number:
+          a  all lines
+          n  no lines
+          t  non-empty lines (default)
+          p PATTERN  only lines matching PATTERN
+
+    -h STYLE, --header-numbering=STYLE
+        Same styles as -b but for header sections. Default is n (none).
+
+    -f STYLE, --footer-numbering=STYLE
+        Same styles as -b but for footer sections. Default is n (none).
+
+    -i N, --line-increment=N
+        Count up by N instead of 1. Default is 1.
+
+    -s SEP, --number-separator=SEP
+        Put SEP between the line number and the line text.
+        Default is a tab.
+
+    -v N, --starting-line-number=N
+        Start numbering at N instead of 1.
+
+    -w N, --number-width=N
+        Use N characters for the line number field. Default is 6.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    nl story.txt
+        Number the non-empty lines of story.txt.
+
+    nl -b a poem.txt
+        Number every line, including blank ones.
+
+    nl -v 10 -i 10 code.rb
+        Start at line 10 and count by 10: 10, 20, 30...
+
+    nl -s ". " notes.txt
+        Separate line numbers from text with a period and space.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                 NL(1)

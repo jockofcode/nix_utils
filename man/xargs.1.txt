@@ -1,0 +1,101 @@
+XARGS(1)                         User Commands                         XARGS(1)
+
+NAME
+    xargs - build and run commands using a list of items from a file or pipe
+
+WHAT IT DOES
+    xargs reads items from standard input and uses them as arguments to
+    run a command. This lets you take a list of file names, words, or
+    other items and pass them all to another program.
+
+    For example, if you have a list of files and want to delete them all,
+    xargs can pass them to rm. Or if grep finds many file names, xargs
+    can pass them all to another command.
+
+HOW TO USE IT
+    xargs [options] [COMMAND [INITIAL-ARGS]]
+
+    When no COMMAND is given, xargs runs echo by default.
+    When no input FILE is given, xargs reads from standard input.
+
+OPTIONS
+    -a FILE, --arg-file=FILE
+        Read items from FILE instead of standard input.
+
+    -d CHAR, --delimiter=CHAR
+        Items are separated by CHAR instead of whitespace.
+        Use -d "\n" to treat each line as one item (useful for file
+        names with spaces).
+
+    -n N, --max-args=N
+        Pass at most N items per command run.
+
+    -P N, --max-procs=N
+        Run up to N commands at the same time (in parallel).
+
+    -I REPLACE, --replace=REPLACE
+        Replace REPLACE in the command with each item. Default is {}.
+        Implies -n 1.
+
+    -0, --null
+        Items are separated by zero bytes instead of whitespace.
+        Use with find -print0 to handle file names with spaces safely.
+
+    -t, --verbose
+        Print each command before running it.
+
+    --no-run-if-empty, -r
+        Do not run the command if there are no items (no input).
+
+    -p, --interactive
+        Ask before running each command.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    find . -name "*.log" | xargs rm
+        Delete all .log files found by find.
+
+    find . -name "*.txt" -print0 | xargs -0 grep "hello"
+        Search for "hello" in all .txt files, safely handling spaces
+        in file names.
+
+    echo "a b c" | xargs -n 1 echo
+        Run echo once for each item:
+          a
+          b
+          c
+
+    seq 1 4 | xargs -P 4 -I {} ./process.sh {}
+        Run process.sh for each number, 4 at a time in parallel.
+
+SEE ALSO
+    find(1)
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               XARGS(1)

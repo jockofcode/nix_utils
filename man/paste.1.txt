@@ -1,0 +1,79 @@
+PASTE(1)                         User Commands                         PASTE(1)
+
+NAME
+    paste - combine lines from multiple files side by side
+
+WHAT IT DOES
+    paste takes two or more files and puts their lines side by side,
+    joined by a tab character. The first line of each file becomes one
+    combined line, then the second line of each file, and so on.
+
+    Think of it like taking several columns of a spreadsheet and placing
+    them next to each other.
+
+HOW TO USE IT
+    paste [options] [FILE]...
+
+    Use - as a filename to include a column from standard input.
+    When no FILE is given, paste reads from standard input.
+
+OPTIONS
+    -d LIST, --delimiters=LIST
+        Use the characters in LIST as separators instead of tabs.
+        If LIST has more than one character, they are used in rotation.
+        Example: -d "," uses commas.
+
+    -s, --serial
+        Instead of combining files in parallel, paste all lines from
+        each file into one long line, then move to the next file.
+
+    -z, --zero-terminated
+        Use a zero byte to end lines instead of a newline.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    paste names.txt ages.txt
+        Combine the two files side by side with tabs:
+          alice    10
+          bob      11
+
+    paste -d "," names.txt ages.txt
+        Use commas as separators:
+          alice,10
+          bob,11
+
+    paste -s numbers.txt
+        Combine all lines of numbers.txt into one line:
+          1    2    3    4    5
+
+    paste - - < data.txt
+        Read stdin and combine every two lines side by side.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               PASTE(1)

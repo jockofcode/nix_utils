@@ -1,0 +1,80 @@
+MKTEMP(1)                        User Commands                        MKTEMP(1)
+
+NAME
+    mktemp - create a temporary file or folder with a unique name
+
+WHAT IT DOES
+    mktemp creates a brand-new temporary file with a unique name so that
+    two programs running at the same time will not accidentally use the
+    same file. It prints the name of the file it created so your script
+    can use it.
+
+    Temporary files are meant to be used briefly and then deleted when
+    you are done.
+
+HOW TO USE IT
+    mktemp [options] [TEMPLATE]
+
+    TEMPLATE is a name that ends with at least three X characters. Those
+    Xs are replaced with random letters and numbers. Default template is
+    something like /tmp/tmp.XXXXXXXXXX.
+
+OPTIONS
+    -d, --directory
+        Create a temporary folder instead of a file.
+
+    -u, --dry-run
+        Print what the name would be without actually creating anything.
+
+    -p DIR, --tmpdir=DIR
+        Create the file inside DIR instead of the default temp folder.
+
+    -t
+        Treat the template as a relative name inside the temp folder.
+
+    --suffix=SUFFIX
+        Add SUFFIX at the very end of the generated name.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    mktemp
+        Create a temp file and print its path, for example:
+          /tmp/tmp.aB3xKq9pLm
+
+    mktemp myapp.XXXXXX
+        Create a temp file with a name like: myapp.r4tZ8w
+
+    mktemp -d
+        Create a temporary directory and print its path.
+
+    TMPFILE=$(mktemp) && echo "data" > "$TMPFILE" && rm "$TMPFILE"
+        Create a temp file, use it, then clean it up in a script.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                             MKTEMP(1)

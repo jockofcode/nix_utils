@@ -1,0 +1,86 @@
+UNAME(1)                         User Commands                         UNAME(1)
+
+NAME
+    uname - print information about the operating system
+
+WHAT IT DOES
+    uname tells you things about the computer's operating system and
+    hardware. By default it just shows the OS name (like "Linux" or
+    "Darwin"). With options, you can also get the version, machine type,
+    and other details.
+
+HOW TO USE IT
+    uname [options]
+
+OPTIONS
+    -a, --all
+        Print all available information at once, in this order:
+        kernel name, hostname, kernel version, OS version, machine type,
+        processor, hardware platform, and OS name.
+
+    -s, --kernel-name
+        Print the operating system name. This is the default.
+
+    -n, --nodename
+        Print the computer's network name (hostname).
+
+    -r, --kernel-release
+        Print the operating system version/release number.
+
+    -v, --kernel-version
+        Print the operating system build date or extra version info.
+
+    -m, --machine
+        Print the machine hardware type (like x86_64 or arm64).
+
+    -p, --processor
+        Print the processor type.
+
+    -i, --hardware-platform
+        Print the hardware platform name.
+
+    -o, --operating-system
+        Print the full operating system name.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    uname
+        Print just the OS name: Linux  (or Darwin on macOS)
+
+    uname -a
+        Print all information at once.
+
+    uname -m
+        Print the machine type: x86_64
+
+    uname -r
+        Print the kernel version: 6.8.0-42-generic
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                              UNAME(1)

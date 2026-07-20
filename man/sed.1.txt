@@ -1,0 +1,102 @@
+SED(1)                           User Commands                           SED(1)
+
+NAME
+    sed - find and replace text in a stream
+
+WHAT IT DOES
+    sed (stream editor) reads lines of text, applies editing commands to
+    each line, and prints the result. The most common use is the
+    substitute command s, which finds a pattern and replaces it with
+    something else — like a find-and-replace tool that works on files
+    from the command line.
+
+    sed reads each line, applies your commands, and outputs the result.
+    It does not change the original file unless you use -i.
+
+HOW TO USE IT
+    sed [options] SCRIPT [FILE]...
+    sed [options] -e SCRIPT [-e SCRIPT]... [FILE]...
+    sed [options] -f SCRIPT_FILE [FILE]...
+
+    When no FILE is given, sed reads from standard input.
+
+COMMON COMMANDS
+    s/PATTERN/REPLACEMENT/
+        Replace the first match of PATTERN with REPLACEMENT on each line.
+
+    s/PATTERN/REPLACEMENT/g
+        Replace all matches on each line (global replace).
+
+    s/PATTERN/REPLACEMENT/i
+        Replace ignoring upper/lower case differences.
+
+    d   Delete lines that match the address.
+
+    p   Print the current line (usually used with -n to print only
+        matching lines).
+
+    q   Quit after processing the current line.
+
+OPTIONS
+    -n, --quiet, --silent
+        Do not automatically print each line. Only print when you use
+        the p command explicitly.
+
+    -e SCRIPT, --expression=SCRIPT
+        Add a command to run. Use multiple -e options for several commands.
+
+    -f FILE, --file=FILE
+        Read commands from FILE instead of from the command line.
+
+    -i[SUFFIX], --in-place[=SUFFIX]
+        Edit the file in place (modify it directly). If SUFFIX is given,
+        save a backup copy with that suffix first.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    sed 's/cat/dog/' animals.txt
+        Replace the first "cat" on each line with "dog."
+
+    sed 's/cat/dog/g' animals.txt
+        Replace every "cat" on each line with "dog."
+
+    sed -n '/error/p' log.txt
+        Print only lines containing "error."
+
+    sed '/^#/d' config.txt
+        Delete all lines starting with #.
+
+    sed -i 's/foo/bar/g' myfile.txt
+        Replace "foo" with "bar" directly in myfile.txt.
+
+    sed -e 's/a/A/' -e 's/b/B/' text.txt
+        Apply two substitutions in one pass.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                SED(1)

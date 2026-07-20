@@ -1,0 +1,82 @@
+COMM(1)                          User Commands                          COMM(1)
+
+NAME
+    comm - compare two sorted files and show what they share or don't
+
+WHAT IT DOES
+    comm reads two files that are both sorted alphabetically and shows
+    three things: lines only in the first file, lines only in the second
+    file, and lines that appear in both files.
+
+    Think of it like comparing two sorted lists to find what is unique
+    to each list and what they have in common.
+
+    Both files must be sorted before you run comm.
+
+HOW TO USE IT
+    comm [options] FILE1 FILE2
+
+    Use - as a filename to read from standard input.
+
+OPTIONS
+    -1
+        Do not show lines that are only in FILE1.
+
+    -2
+        Do not show lines that are only in FILE2.
+
+    -3
+        Do not show lines that are in both files.
+
+    --check-order
+        Report an error if the input is not in sorted order.
+
+    --nocheck-order
+        Do not check whether the input is sorted.
+
+    --output-delimiter=STR
+        Use STR instead of a tab to separate the columns.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    comm file1.txt file2.txt
+        Show three columns: lines only in file1, lines only in file2,
+        and lines in both.
+
+    comm -12 file1.txt file2.txt
+        Show only lines that appear in both files.
+
+    comm -3 file1.txt file2.txt
+        Show lines that are different between the two files.
+
+    comm -23 file1.txt file2.txt
+        Show only lines unique to file1.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               COMM(1)

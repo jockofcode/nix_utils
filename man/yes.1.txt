@@ -1,0 +1,65 @@
+YES(1)                           User Commands                           YES(1)
+
+NAME
+    yes - repeatedly print the same text over and over
+
+WHAT IT DOES
+    yes prints the same text over and over again, one line at a time,
+    forever (until you stop it with Ctrl+C or until another program
+    stops reading from it). By default it prints "y" over and over.
+
+    This is useful for automatically answering "yes" to programs that
+    keep asking you a question. You pipe yes into the other program
+    so it gets "y" as the answer every time it asks.
+
+HOW TO USE IT
+    yes [STRING]...
+
+    When no STRING is given, yes prints "y" repeatedly.
+    When you give strings, it prints them joined by spaces, repeatedly.
+
+OPTIONS
+    yes has no options (other than --help, which it ignores).
+
+EXAMPLES
+    yes
+        Prints "y" forever. Press Ctrl+C to stop.
+
+    yes | some_program
+        Answer "y" to every question some_program asks.
+
+    yes "I agree"
+        Prints "I agree" over and over forever.
+
+    yes n | some_program
+        Answer "n" to every question some_program asks.
+
+    yes "" | head -5
+        Print 5 empty lines.
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                                YES(1)

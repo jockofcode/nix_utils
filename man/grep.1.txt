@@ -1,0 +1,128 @@
+GREP(1)                          User Commands                          GREP(1)
+
+NAME
+    grep - search for lines that match a pattern
+
+WHAT IT DOES
+    grep searches through files looking for lines that contain a pattern
+    you describe. It prints every matching line. The name comes from an
+    old editor command that meant "get regular expression and print."
+
+    You can search for simple words, or use special pattern rules called
+    regular expressions to find more complex things like "any line with
+    a number followed by a letter."
+
+HOW TO USE IT
+    grep [options] PATTERN [FILE]...
+    grep [options] -e PATTERN [FILE]...
+    grep [options] -f PATTERN_FILE [FILE]...
+
+    When no FILE is given, grep reads from standard input.
+
+OPTIONS
+    -i, --ignore-case
+        Ignore the difference between UPPER and lower case letters.
+
+    -v, --invert-match
+        Show only lines that do NOT match the pattern.
+
+    -n, --line-number
+        Show the line number before each matching line.
+
+    -c, --count
+        Instead of showing the lines, just count how many matched.
+
+    -l, --files-with-matches
+        Only print the name of each file that has at least one match.
+
+    -L, --files-without-match
+        Only print the name of each file that has no matches at all.
+
+    -r, --recursive
+        Search inside all files in a folder and its sub-folders.
+
+    -R, --dereference-recursive
+        Same as -r but also follows symbolic links.
+
+    -w, --word-regexp
+        Match the pattern only when it appears as a whole word.
+
+    -x, --line-regexp
+        Match only lines where the entire line matches the pattern.
+
+    -o, --only-matching
+        Print only the part of the line that matches, not the whole line.
+
+    -q, --quiet, --silent
+        Do not print anything; just set the exit status.
+
+    -A N, --after-context=N
+        Also print N lines after each matching line.
+
+    -B N, --before-context=N
+        Also print N lines before each matching line.
+
+    -C N, --context=N
+        Print N lines before and after each matching line.
+
+    -e PATTERN
+        Use PATTERN as the search pattern. Useful when the pattern
+        starts with a dash.
+
+    -f FILE
+        Read patterns from FILE, one per line.
+
+    -E, --extended-regexp
+        Use extended regular expressions (more powerful patterns).
+
+    -F, --fixed-strings
+        Treat the pattern as a plain string, not a regular expression.
+
+    --help
+        Show a short help message and quit.
+
+EXAMPLES
+    grep "error" log.txt
+        Find all lines containing the word "error" in log.txt.
+
+    grep -i "hello" greetings.txt
+        Find "hello" regardless of capitalization.
+
+    grep -n "TODO" *.rb
+        Find all lines with "TODO" in any .rb file, with line numbers.
+
+    grep -r "password" /etc/
+        Search all files in /etc/ for the word "password."
+
+    grep -v "^#" config.txt
+        Show all lines that do NOT start with #.
+
+    grep -c "warning" server.log
+        Count how many lines contain "warning."
+
+COPYRIGHT
+    MIT License
+
+    Copyright (c) 2026 nix_utils contributors
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+nix_utils                          2026                               GREP(1)
