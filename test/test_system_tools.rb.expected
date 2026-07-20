@@ -1,0 +1,43 @@
+whoami non-empty:ok
+hostname non-empty:ok
+uname non-empty:ok
+uname -a multiple words:ok
+env lists variables:ok
+env -i with var:ok
+id contains uid:ok
+id -u numeric:ok
+logname non-empty:ok
+logname matches USER:ok
+printenv lists vars:ok
+printenv has HOME:ok
+printenv HOME value:ok
+printenv missing exit 1:ok
+nproc positive integer:ok
+nproc --all positive:ok
+nproc --ignore=9999 is 1:ok
+sleep duration:ok
+true exit 0:ok
+false exit 1:ok
+tsort basic DAG:ok
+tsort self-loop:ok
+factor 12:ok
+factor 1:ok
+factor 2 prime:ok
+factor --exponents:ok
+factor 97 prime:ok
+factor from stdin:ok
+date +%Y current year:ok
+date --utc +%Z is UTC:ok
+date -r FILE year:ok
+date -I ISO date:ok
+base64 round-trip:ok
+base64 -w wrap:ok
+sha256sum empty file:ok
+sha256sum -c OK:ok
+sha256sum -c FAIL exit:ok
+md5sum empty file:ok
+cksum produces output:ok
+cksum -a md5 matches md5sum:ok
+numfmt 1000 to si:ok
+numfmt 1K from iec:ok
+numfmt 1k from si:ok

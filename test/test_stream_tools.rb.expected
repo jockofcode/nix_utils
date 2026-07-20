@@ -1,0 +1,83 @@
+cat -v control char:ok
+cat -v high byte:ok
+cat -A tab and end:ok
+cat -e end only:ok
+cat -t tab only:ok
+head -n1K reads all lines:ok
+head -c1K empty:ok
+tail -n3 last lines:ok
+tail -n+3 from line3:ok
+tail -c5 last bytes:ok
+tail -c+6 from byte6:ok
+tail -v header:ok
+wc --files0-from:ok
+wc --total=always:ok
+wc --total=never:ok
+wc --total=only:ok
+grep basic match:ok
+grep no match:ok
+grep -i case insensitive:ok
+grep -v invert:ok
+grep -n line numbers:ok
+grep -c count:ok
+grep -F fixed string:ok
+grep -w word match:ok
+grep -x whole line:ok
+grep -o only matching:ok
+grep -m max count:ok
+grep regex:ok
+comm default:ok
+comm -12 common:ok
+comm -3 no common:ok
+strings basic:ok
+strings -n min len:ok
+strings -f file name:ok
+strings -N shorthand:ok
+strings -s separator:ok
+echo basic:ok
+echo -n no newline:ok
+echo -e escape tab:ok
+echo -e newline esc:ok
+yes y lines:ok
+yes custom string:ok
+printf %d:ok
+printf %s:ok
+printf %f:ok
+printf %x hex:ok
+printf %o octal:ok
+printf width:ok
+printf repeat:ok
+fmt wraps at 75:ok
+fmt -w width:ok
+fmt blank lines:ok
+join default:ok
+join -a1 unpaired:ok
+od -c dump:ok
+od default octal:ok
+od -A x hex addr:ok
+od -a named chars:ok
+od --endian big:ok
+od --endian little:ok
+hexdump -C canonical:ok
+hexdump default hex:ok
+hexdump -X one-byte:ok
+hexdump -C not padded:ok
+shuf same lines:ok
+shuf -n limits:ok
+shuf -e treats args:ok
+column free-flow:ok
+column -t table:ok
+column -o separator:ok
+xargs basic echo:ok
+xargs -n 1:ok
+xargs -I replace:ok
+xargs -r empty:ok
+sed s/l/L/g:ok
+sed -n p:ok
+sed 2,3p range:ok
+sed 2d delete:ok
+sed y transliterate:ok
+sed -i in-place:ok
+tee stdout:ok
+tee file:ok
+tee append:ok

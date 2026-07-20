@@ -1,0 +1,55 @@
+tac basic:ok
+tac single line:ok
+tac custom separator:ok
+tac before mode:ok
+tac regex separator:ok
+tac regex before mode:ok
+seq LAST:ok
+seq FIRST LAST:ok
+seq FIRST INC LAST:ok
+seq descending:ok
+seq -s separator:ok
+seq -w equal width:ok
+seq float:ok
+sort basic:ok
+sort -r reverse:ok
+sort -n numeric:ok
+sort -u unique:ok
+sort -f case insensitive:ok
+sort -k field:ok
+uniq basic:ok
+uniq -c count:ok
+uniq -d repeated only:ok
+uniq -u unique only:ok
+uniq -i ignore case:ok
+cut -f fields tab:ok
+cut -d: -f1,3:ok
+cut -c range:ok
+cut -c open end:ok
+cut -f complement:ok
+cut -s suppress no-delim:ok
+tr uppercase:ok
+tr -d delete:ok
+tr -s squeeze:ok
+tr -d -s delete squeeze:ok
+tr escape sequences:ok
+fold -w wrap:ok
+fold -w -s break space:ok
+fold short no wrap:ok
+fold -c tab as one char:ok
+fold default tab expands:ok
+nl default nonempty:ok
+nl -ba all lines:ok
+nl -v -i increment:ok
+nl -nrz zero padded:ok
+nl sections:ok
+nl -bp regex body:ok
+nl -p no page reset:ok
+expand default tab=8:ok
+expand -t4:ok
+expand -t4 two tabs:ok
+unexpand default:ok
+unexpand -a mid-line:ok
+paste parallel:ok
+paste -d delimiter:ok
+paste -s serial:ok

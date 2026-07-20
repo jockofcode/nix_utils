@@ -30,7 +30,7 @@ USAGE = "Usage: numfmt [OPTION]... [NUMBER]...\n" \
 
 VERSION = "numfmt (nix_utils) 1.0"
 
-require_relative "../nix_utils/nix_helpers"
+require_relative "nix_helpers"
 
 class NumfmtOptions
   attr_accessor :from_unit_type, :to_unit_type, :from_unit_mult, :to_unit_mult
@@ -256,7 +256,9 @@ end
 def convert_number(num_str, opts)
   s = "" + num_str
   val = parse_number_with_unit(s, opts.from_unit_type, opts.suffix) * opts.from_unit_mult
-  scaled, unit_suffix = scale_to_unit(val, opts.to_unit_type, opts.to_unit_mult)
+  su_result = scale_to_unit(val, opts.to_unit_type, opts.to_unit_mult)
+  scaled = su_result[0].to_f
+  unit_suffix = "" + su_result[1].to_s
   rounded = apply_rounding(scaled, opts.round_method)
   format_scaled(rounded, unit_suffix, opts)
 end
@@ -267,7 +269,9 @@ def process_line(line, opts, header_remaining)
     puts s
     return header_remaining - 1
   end
-  field_indices, open_end = parse_field_ranges(opts.field_str)
+  fr_result = parse_field_ranges(opts.field_str)
+  field_indices = fr_result[0]
+  open_end = (fr_result[1].to_s == "true")
   fields = s.split(" ", -1)
   i = 0
   while i < fields.length

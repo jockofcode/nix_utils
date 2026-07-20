@@ -22,7 +22,7 @@ USAGE = "Usage: du [OPTION]... [FILE]...\n" \
 
 VERSION = "du (nix_utils) 1.0"
 
-require_relative "../nix_utils/nix_helpers"
+require_relative "nix_helpers"
 
 class DuOptions
   attr_accessor :all_files, :apparent_size, :block_size, :show_total, :max_depth
@@ -44,7 +44,7 @@ class DuOptions
     @threshold       = nil    # Integer bytes; negative means "smaller than"
     @show_time       = false
     @time_style      = nil
-    @exclude_pats    = []
+    @exclude_pats    = [""]
     @inodes          = false
     @count_links     = false
   end

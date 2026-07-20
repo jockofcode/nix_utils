@@ -1,0 +1,43 @@
+basename path:ok
+basename suffix:ok
+basename -a:ok
+dirname path:ok
+dirname no dir:ok
+dirname root:ok
+pwd is absolute:ok
+touch creates file:ok
+stat shows file name:ok
+stat shows size:ok
+mkdir creates dir:ok
+mkdir -p nested:ok
+rmdir removes dir:ok
+cp copies file:ok
+rm removes file:ok
+mv moves file:ok
+mv removes source:ok
+ln -s creates symlink:ok
+ln -s target readable:ok
+ln hard link:ok
+ln hard same content:ok
+ls lists files:ok
+ls -l permissions:ok
+ls -l sizes:ok
+ls -1 one per line:ok
+find -name matches:ok
+find -type d dirs:ok
+find -maxdepth 1:ok
+find -exec echo:ok
+du produces output:ok
+du -s one line:ok
+du -h suffixes:ok
+split -l 3 creates 4 files:ok
+split reassembly matches:ok
+split -b 3 creates 4 files:ok
+realpath existing dir:ok
+realpath -m missing:ok
+realpath -e missing exit:ok
+readlink prints target:ok
+mktemp creates file:ok
+mktemp -d creates dir:ok
+mktemp -u no file:ok
+mktemp template prefix:ok

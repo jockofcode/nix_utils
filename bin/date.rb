@@ -34,7 +34,7 @@ USAGE = "Usage: date [OPTION]... [+FORMAT]\n" \
 
 VERSION = "date (nix_utils) 1.0"
 
-require_relative "../nix_utils/nix_helpers"
+require_relative "nix_helpers"
 
 use_utc      = false
 format_str   = nil
@@ -160,7 +160,7 @@ def parse_date_string(s)
       end
     return Time.at(now.to_i + sign * secs)
   end
-  die("date: invalid date '#{s}'")
+  STDERR.puts "date: invalid date '#{s}'"; exit 1
 end
 
 # ── Output formatting ───────────────────────────────────────────────────────

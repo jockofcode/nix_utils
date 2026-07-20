@@ -16,7 +16,7 @@ USAGE = "Usage: factor [OPTION]... [NUMBER]...\n" \
 
 VERSION = "factor (nix_utils) 1.0"
 
-require_relative "../nix_utils/nix_helpers"
+require_relative "nix_helpers"
 
 use_exponents = false
 numbers       = []
@@ -42,7 +42,7 @@ while index < ARGV.length
 end
 
 if numbers.empty?
-  STDIN.read.split("\n").each { |line| numbers.push("" + line) unless ("" + line) == "" }
+  ("" + STDIN.read).split("\n").each { |line| numbers.push("" + line) unless ("" + line) == "" }
 end
 
 def factorize(n)
