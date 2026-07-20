@@ -88,6 +88,26 @@ systems where the usual tools are not available.
 | xargs | Build and run commands using a list of items |
 | yes | Repeatedly print the same text over and over |
 
+## Install Spinel
+
+With `asdf`:
+
+```bash
+asdf plugin add spinel https://github.com/jockofcode/asdf-spinel
+asdf install spinel latest
+asdf set -u spinel latest   # make it the default (~/.tool-versions)
+```
+
+Or build it from source:
+
+```bash
+git clone https://github.com/matz/spinel.git
+cd spinel
+make
+export PATH="$PWD/bin:$PATH"
+cd -
+```
+
 ## How to build
 
 You need the [Spinel compiler](https://github.com/matz/spinel) installed.
