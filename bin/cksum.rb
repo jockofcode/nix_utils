@@ -30,7 +30,7 @@ VERSION = "cksum (nix_utils) 1.0"
 require "digest"
 require_relative "digest_ext"
 require "base64"
-require_relative "nix_helpers"
+require_relative '../nix_utils/nix_helpers'
 
 class CksumOptions
   attr_accessor :algorithm, :use_base64, :check_mode, :tag_mode, :untagged

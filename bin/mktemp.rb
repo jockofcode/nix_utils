@@ -21,7 +21,7 @@ USAGE = "Usage: mktemp [OPTION]... [TEMPLATE]\n" \
 
 VERSION = "mktemp (nix_utils) 1.0"
 
-require_relative "nix_helpers"
+require_relative '../nix_utils/nix_helpers'
 
 make_dir   = false
 dry_run    = false

@@ -301,15 +301,21 @@ exit_code = 0
 header_left = opts.header_count
 
 if numbers.empty?
-  STDIN.read.split("\n").each do |line|
-    header_left = process_line("" + line, opts, header_left)
+  stdin_lines = STDIN.read.to_s.split("\n")
+  sli = 0
+  while sli < stdin_lines.length
+    header_left = process_line("" + stdin_lines[sli], opts, header_left)
+    sli += 1
   end
 else
   numbers.each do |n|
     cn = "" + n
     if cn == "-"
-      STDIN.read.split("\n").each do |line|
-        header_left = process_line("" + line, opts, header_left)
+      stdin_lines = STDIN.read.to_s.split("\n")
+      sli = 0
+      while sli < stdin_lines.length
+        header_left = process_line("" + stdin_lines[sli], opts, header_left)
+        sli += 1
       end
     else
       header_left = process_line(cn, opts, header_left)

@@ -26,7 +26,7 @@ USAGE = "Usage: realpath [OPTION]... FILE...\n" \
 
 VERSION = "realpath (nix_utils) 1.0"
 
-require_relative "nix_helpers"
+require_relative '../nix_utils/nix_helpers'
 
 must_exist    = false  # -e
 allow_missing = false  # -m

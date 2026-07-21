@@ -38,6 +38,18 @@ in_place     = false
 in_place_sfx = nil
 options_done = false
 
+# Capture mode: nil = write to stdout, array = collect lines for in-place write.
+# $stdout redirection is not supported in Spinel; this global is used instead.
+$sed_cap = nil
+
+def sed_puts(s)
+  if $sed_cap.nil?
+    puts "" + s
+  else
+    $sed_cap.push("" + s)
+  end
+end
+
 index = 0
 while index < ARGV.length
   arg = coerce(ARGV[index])
@@ -780,8 +792,8 @@ def process_stream(lines_arr, cmds, label_idx, quiet, sandbox)
       elsif rs == "quit_no_print"
         quit_code = val.to_i; quit_print = false; break
       elsif rs == "next_line"
-        puts("" + state.pattern) unless quiet
-        obi = 1; while obi < state.output_buf.length; puts "" + state.output_buf[obi]; obi += 1; end
+        sed_puts("" + state.pattern) unless quiet
+        obi = 1; while obi < state.output_buf.length; sed_puts "" + state.output_buf[obi]; obi += 1; end
         state.output_buf = [""]
         li += 1
         break if li >= total
@@ -813,16 +825,16 @@ def process_stream(lines_arr, cmds, label_idx, quiet, sandbox)
     end
 
     unless do_delete
-      obi = 1; while obi < state.output_buf.length; puts "" + state.output_buf[obi]; obi += 1; end
+      obi = 1; while obi < state.output_buf.length; sed_puts "" + state.output_buf[obi]; obi += 1; end
       state.output_buf = [""]
-      puts("" + state.pattern) unless quiet
+      sed_puts("" + state.pattern) unless quiet
     else
       state.output_buf = [""]
     end
-    after_texts.each { |t| puts "" + t.to_s }
+    after_texts.each { |t| sed_puts "" + t.to_s }
 
     unless quit_code.nil?
-      puts("" + state.pattern) if quit_print && !quiet && !do_delete
+      sed_puts("" + state.pattern) if quit_print && !quiet && !do_delete
       exit quit_code.to_i
     end
 
@@ -842,18 +854,17 @@ if in_place
     unless in_place_sfx.nil?
       File.open(cf + ("" + in_place_sfx), "w") { |bakf| bakf.write(content) }
     end
-    # Write output to a temp file (StringIO not available in Spinel),
-    # redirect $stdout to the File handle, then move temp file over original.
-    tmppath = cf + ".sp_sed_tmp"
-    File.open(tmppath, "w") do |tmpf|
-      orig_out = $stdout
-      $stdout = tmpf
-      process_stream(lines, cmds, label_idx, quiet, sandbox)
-      $stdout = orig_out
+    $sed_cap = [""]
+    process_stream(lines, cmds, label_idx, quiet, sandbox)
+    cap = $sed_cap
+    $sed_cap = nil
+    out_str = ""
+    ci2 = 1
+    while ci2 < cap.length
+      out_str += cap[ci2] + "\n"
+      ci2 += 1
     end
-    new_content = File.read(tmppath)
-    File.open(cf, "w") { |outf| outf.write(new_content) }
-    File.delete(tmppath)
+    File.open(cf, "w") { |outf| outf.write(out_str) }
   end
 else
   if separate

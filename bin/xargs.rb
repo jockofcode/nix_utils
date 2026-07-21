@@ -39,7 +39,7 @@ USAGE = "Usage: xargs [OPTION]... [COMMAND [INITIAL-ARGS]...]\n" \
 
 VERSION = "xargs (nix_utils) 1.0"
 
-require_relative "nix_helpers"
+require_relative '../nix_utils/nix_helpers'
 
 class XargsOptions
   attr_accessor :arg_file, :delimiter, :replace_str, :max_lines

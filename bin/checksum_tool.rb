@@ -7,7 +7,7 @@
 #
 # This file also defines ChecksumOptions and the main entry point run_checksum_tool.
 
-require_relative "nix_helpers"
+require_relative '../nix_utils/nix_helpers'
 
 CHECKSUM_USAGE = "Usage: #{TOOL_NAME} [OPTION]... [FILE]...\n" \
   "Print or check #{ALGO_LABEL} checksums.\n" \

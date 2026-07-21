@@ -34,7 +34,7 @@ USAGE = "Usage: date [OPTION]... [+FORMAT]\n" \
 
 VERSION = "date (nix_utils) 1.0"
 
-require_relative "nix_helpers"
+require_relative '../nix_utils/nix_helpers'
 
 use_utc      = false
 format_str   = nil

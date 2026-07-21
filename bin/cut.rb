@@ -259,8 +259,8 @@ end
 
 def read_source(name)
   cname = "" + name
-  return STDIN.read if cname == "-"
-  File.read(cname)
+  return (STDIN.read || "") if cname == "-"
+  File.read(cname) || ""
 end
 
 opts, files = parse_argv(ARGV)
