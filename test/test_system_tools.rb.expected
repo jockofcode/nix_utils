@@ -41,3 +41,11 @@ cksum -a md5 matches md5sum:ok
 numfmt 1000 to si:ok
 numfmt 1K from iec:ok
 numfmt 1k from si:ok
+sha1sum empty file:ok
+sha1sum -c OK:ok
+sha224sum empty file:ok
+sha224sum -c OK:ok
+sha384sum empty file:ok
+sha384sum -c OK:ok
+sha512sum empty file:ok
+sha512sum -c OK:ok

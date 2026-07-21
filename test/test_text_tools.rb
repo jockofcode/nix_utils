@@ -1,5 +1,5 @@
 PROJECT_ROOT = File.expand_path('..', File.dirname(__FILE__))
-NTT_TMP = "/tmp/nix_text_#{$$}"
+NTT_TMP = "/tmp/nix_text_test"
 system("mkdir -p '#{NTT_TMP}'")
 
 $last_exit = 0
@@ -12,11 +12,10 @@ def ttt_rp(name, stdin_data, args = nil)
   sin = "#{NTT_TMP}/stdin"
   act = "#{NTT_TMP}/act"
   f = File.open(sin, 'wb'); f.write(stdin_data); f.close
-  cmd = "ruby '#{ttt_tool(name)}'"
+  cmd = "spinel -E '#{ttt_tool(name)}'"
   cmd = cmd + " #{args}" if args
   cmd = cmd + " < '#{sin}' > '#{act}' 2>/dev/null"
   system(cmd)
-  $last_exit = $? ? $?.exitstatus : -1
   f2 = File.open(act, 'rb'); r = f2.read; f2.close; r
 rescue
   ""
@@ -25,7 +24,7 @@ end
 def ttt_rn(name, args = nil, stdin = nil)
   sin = "#{NTT_TMP}/stdin"
   act = "#{NTT_TMP}/act"
-  cmd = "ruby '#{ttt_tool(name)}'"
+  cmd = "spinel -E '#{ttt_tool(name)}'"
   cmd = cmd + " #{args}" if args
   if stdin
     f = File.open(sin, 'wb'); f.write(stdin); f.close
@@ -34,7 +33,6 @@ def ttt_rn(name, args = nil, stdin = nil)
     cmd = cmd + " < /dev/null > '#{act}' 2>/dev/null"
   end
   system(cmd)
-  $last_exit = $? ? $?.exitstatus : -1
   f2 = File.open(act, 'rb'); r = f2.read; f2.close; r
 rescue
   ""

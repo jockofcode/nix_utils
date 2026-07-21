@@ -1,1 +1,5 @@
 /build/
+*.o
+*.types.json
+sp_test
+xaa*

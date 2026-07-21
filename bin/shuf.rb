@@ -161,7 +161,7 @@ end
 
 # Open output
 out_io = if opts.output_file
-  File.open(opts.output_file, "w")
+  File.open("" + opts.output_file, "w")
 else
   STDOUT
 end

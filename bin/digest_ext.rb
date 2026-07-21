@@ -185,10 +185,10 @@ module Digest
       ri += 1
     end
 
-    h[0] = (h[0] + a) & mask; h[1] = (h[1] + b) & mask
-    h[2] = (h[2] + c) & mask; h[3] = (h[3] + d) & mask
-    h[4] = (h[4] + e) & mask; h[5] = (h[5] + f) & mask
-    h[6] = (h[6] + g) & mask; h[7] = (h[7] + hh) & mask
+    [(h[0] + a) & mask, (h[1] + b) & mask,
+     (h[2] + c) & mask, (h[3] + d) & mask,
+     (h[4] + e) & mask, (h[5] + f) & mask,
+     (h[6] + g) & mask, (h[7] + hh) & mask]
   end
 
   def self.sha256_pad_and_run(msg, h)
@@ -215,9 +215,10 @@ module Digest
     num_blocks = (bytes.length - 1) / 64
     blk = 0
     while blk < num_blocks
-      sha256_block(h, bytes, 1 + blk * 64)
+      h = sha256_block(h, bytes, 1 + blk * 64)
       blk += 1
     end
+    h
   end
 
   module SHA224
@@ -227,7 +228,7 @@ module Digest
     def self.hexdigest(msg)
       h = [SHA224_IVH[0], SHA224_IVH[1], SHA224_IVH[2], SHA224_IVH[3],
            SHA224_IVH[4], SHA224_IVH[5], SHA224_IVH[6], SHA224_IVH[7]]
-      Digest.sha256_pad_and_run(msg, h)
+      h = Digest.sha256_pad_and_run(msg, h)
       hx = DEXT_HEX
       hex = ""
       hi = 0
@@ -395,14 +396,18 @@ module Digest
       ri += 1
     end
 
-    hH[0] = (hH[0] + aH + ((hL[0] + aL) >> 32)) & m; hL[0] = (hL[0] + aL) & m
-    hH[1] = (hH[1] + bH + ((hL[1] + bL) >> 32)) & m; hL[1] = (hL[1] + bL) & m
-    hH[2] = (hH[2] + cH + ((hL[2] + cL) >> 32)) & m; hL[2] = (hL[2] + cL) & m
-    hH[3] = (hH[3] + dH + ((hL[3] + dL) >> 32)) & m; hL[3] = (hL[3] + dL) & m
-    hH[4] = (hH[4] + eH + ((hL[4] + eL) >> 32)) & m; hL[4] = (hL[4] + eL) & m
-    hH[5] = (hH[5] + fH + ((hL[5] + fL) >> 32)) & m; hL[5] = (hL[5] + fL) & m
-    hH[6] = (hH[6] + gH + ((hL[6] + gL) >> 32)) & m; hL[6] = (hL[6] + gL) & m
-    hH[7] = (hH[7] + hhH + ((hL[7] + hhL) >> 32)) & m; hL[7] = (hL[7] + hhL) & m
+    [(hH[0] + aH + ((hL[0] + aL) >> 32)) & m,
+     (hH[1] + bH + ((hL[1] + bL) >> 32)) & m,
+     (hH[2] + cH + ((hL[2] + cL) >> 32)) & m,
+     (hH[3] + dH + ((hL[3] + dL) >> 32)) & m,
+     (hH[4] + eH + ((hL[4] + eL) >> 32)) & m,
+     (hH[5] + fH + ((hL[5] + fL) >> 32)) & m,
+     (hH[6] + gH + ((hL[6] + gL) >> 32)) & m,
+     (hH[7] + hhH + ((hL[7] + hhL) >> 32)) & m,
+     (hL[0] + aL) & m, (hL[1] + bL) & m,
+     (hL[2] + cL) & m, (hL[3] + dL) & m,
+     (hL[4] + eL) & m, (hL[5] + fL) & m,
+     (hL[6] + gL) & m, (hL[7] + hhL) & m]
   end
 
   def self.sha512_pad_and_run(msg, hH, hL)
@@ -432,20 +437,26 @@ module Digest
       lbi -= 1
     end
 
+    curH = [hH[0], hH[1], hH[2], hH[3], hH[4], hH[5], hH[6], hH[7]]
+    curL = [hL[0], hL[1], hL[2], hL[3], hL[4], hL[5], hL[6], hL[7]]
     num_blocks = (bytes.length - 1) / 128
     blk = 0
     while blk < num_blocks
-      sha512_block(hH, hL, bytes, 1 + blk * 128)
+      res = sha512_block(curH, curL, bytes, 1 + blk * 128)
+      curH = [res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]]
+      curL = [res[8], res[9], res[10], res[11], res[12], res[13], res[14], res[15]]
       blk += 1
     end
+    [curH[0], curH[1], curH[2], curH[3], curH[4], curH[5], curH[6], curH[7],
+     curL[0], curL[1], curL[2], curL[3], curL[4], curL[5], curL[6], curL[7]]
   end
 
-  def self.sha512_hex_words(hH, hL, nwords)
+  def self.sha512_hex_words(state, nwords)
     hx = DEXT_HEX
     hex = ""
     hi = 0
     while hi < nwords
-      wh = hH[hi]; wl = hL[hi]
+      wh = state[hi]; wl = state[hi + 8]
       bj = 3
       while bj >= 0
         bv = (wh >> (bj * 8)) & 0xff
@@ -477,8 +488,8 @@ module Digest
             SHA512_IVH[4], SHA512_IVH[5], SHA512_IVH[6], SHA512_IVH[7]]
       hL = [SHA512_IVL[0], SHA512_IVL[1], SHA512_IVL[2], SHA512_IVL[3],
             SHA512_IVL[4], SHA512_IVL[5], SHA512_IVL[6], SHA512_IVL[7]]
-      Digest.sha512_pad_and_run(msg, hH, hL)
-      Digest.sha512_hex_words(hH, hL, 8)
+      state = Digest.sha512_pad_and_run(msg, hH, hL)
+      Digest.sha512_hex_words(state, 8)
     end
   end
 
@@ -493,8 +504,8 @@ module Digest
             SHA384_IVH[4], SHA384_IVH[5], SHA384_IVH[6], SHA384_IVH[7]]
       hL = [SHA384_IVL[0], SHA384_IVL[1], SHA384_IVL[2], SHA384_IVL[3],
             SHA384_IVL[4], SHA384_IVL[5], SHA384_IVL[6], SHA384_IVL[7]]
-      Digest.sha512_pad_and_run(msg, hH, hL)
-      Digest.sha512_hex_words(hH, hL, 6)
+      state = Digest.sha512_pad_and_run(msg, hH, hL)
+      Digest.sha512_hex_words(state, 6)
     end
   end
 end

@@ -442,7 +442,7 @@ if opts.unique
   sorted = uniq
 end
 
-out = opts.output ? File.open(opts.output, "w") : STDOUT
+out = opts.output ? File.open("" + opts.output, "w") : STDOUT
 sorted.each { |body| out.write(body + delim) }
 out.close if opts.output
 

@@ -157,7 +157,7 @@ def split_fields(line, sep)
     fields.push(word) if in_word
     fields
   else
-    line.split(sep, -1)
+    line.split("" + sep, -1)
   end
 end
 

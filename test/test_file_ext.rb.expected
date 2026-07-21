@@ -1,0 +1,8 @@
+readlink:ok
+stat_str field count:ok
+lstat_str symlink mode:ok
+symlink rc:ok
+symlink exists:ok
+link dir rc nonzero:ok
+link dir not created:ok
+done:ok

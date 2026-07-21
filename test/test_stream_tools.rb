@@ -1,5 +1,5 @@
 PROJECT_ROOT = File.expand_path('..', File.dirname(__FILE__))
-NST_TMP = "/tmp/nix_stream_#{$$}"
+NST_TMP = "/tmp/nix_stream_test"
 system("mkdir -p '#{NST_TMP}'")
 
 $last_exit = 0
@@ -12,11 +12,10 @@ def st_rp(name, stdin_data, args = nil)
   sin = "#{NST_TMP}/stdin"
   act = "#{NST_TMP}/act"
   f = File.open(sin, 'wb'); f.write(stdin_data); f.close
-  cmd = "ruby '#{st_tool(name)}'"
+  cmd = "spinel -E '#{st_tool(name)}'"
   cmd = cmd + " #{args}" if args
   cmd = cmd + " < '#{sin}' > '#{act}' 2>/dev/null"
   system(cmd)
-  $last_exit = $? ? $?.exitstatus : -1
   f2 = File.open(act, 'rb'); r = f2.read; f2.close; r
 rescue
   ""
@@ -25,7 +24,7 @@ end
 def st_rn(name, args = nil, stdin = nil)
   sin = "#{NST_TMP}/stdin"
   act = "#{NST_TMP}/act"
-  cmd = "ruby '#{st_tool(name)}'"
+  cmd = "spinel -E '#{st_tool(name)}'"
   cmd = cmd + " #{args}" if args
   if stdin
     f = File.open(sin, 'wb'); f.write(stdin); f.close
@@ -34,7 +33,6 @@ def st_rn(name, args = nil, stdin = nil)
     cmd = cmd + " < /dev/null > '#{act}' 2>/dev/null"
   end
   system(cmd)
-  $last_exit = $? ? $?.exitstatus : -1
   f2 = File.open(act, 'rb'); r = f2.read; f2.close; r
 rescue
   ""
@@ -73,7 +71,7 @@ st_ck "tail -v header", true, tail_act.include?("==>")
 wca = "#{NST_TMP}/wc_a"; File.write(wca, "hello\nworld\n")
 wcb = "#{NST_TMP}/wc_b"; File.write(wcb, "foo\n")
 wclist = "#{NST_TMP}/wc_list"
-fw = File.open(wclist, 'wb'); fw.write("#{wca}\x00#{wcb}\x00"); fw.close
+system("printf '%s\\0%s\\0' '#{wca}' '#{wcb}' > '#{wclist}'")
 st_ck "wc --files0-from",
   "      2 #{wca}\n      1 #{wcb}\n      3 total\n",
   st_rn("wc", "-l --files0-from='#{wclist}'")
@@ -115,7 +113,11 @@ strings_f = "#{NST_TMP}/strings_f"
 fw2 = File.open(strings_f, 'wb'); fw2.write("\x01\x02hello\x03"); fw2.close
 st_ck "strings -f file name", "#{strings_f}: hello\n", st_rn("strings", "-f '#{strings_f}'")
 st_ck "strings -N shorthand", "abcde\n",  st_rp("strings", "abc\x01abcde\x02", "-5")
-st_ck "strings -s separator", "aaaa|bbbb|", st_rp("strings", "aaaa\x00bbbb", "-s '|'")
+strings_sep_in = "#{NST_TMP}/strings_sep_in"
+system("printf 'aaaa\\0bbbb' > '#{strings_sep_in}'")
+strings_sep_act = "#{NST_TMP}/strings_sep_act"
+system("spinel -E '#{st_tool("strings")}' -s '|' < '#{strings_sep_in}' > '#{strings_sep_act}' 2>/dev/null")
+st_ck "strings -s separator", "aaaa|bbbb|", File.read(strings_sep_act)
 
 # ── echo ────────────────────────────────────────────────────────────────────
 st_ck "echo basic",           "hello world\n", st_rn("echo", "hello world")
@@ -124,9 +126,9 @@ st_ck "echo -e escape tab",   "a\tb\n",        st_rn("echo", "-e 'a\\tb'")
 st_ck "echo -e newline esc",  "a\nb\n",        st_rn("echo", "-e 'a\\nb'")
 
 # ── yes ─────────────────────────────────────────────────────────────────────
-yes_y = `ruby '#{st_tool("yes")}' 2>/dev/null | head -3`
+yes_y = `spinel -E '#{st_tool("yes")}' 2>/dev/null | head -3`
 st_ck "yes y lines", "y\ny\ny\n", yes_y
-yes_no = `ruby '#{st_tool("yes")}' no 2>/dev/null | head -2`
+yes_no = `spinel -E '#{st_tool("yes")}' no 2>/dev/null | head -2`
 st_ck "yes custom string", "no\nno\n", yes_no
 
 # ── printf ──────────────────────────────────────────────────────────────────

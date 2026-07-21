@@ -16,7 +16,7 @@ USAGE = "Usage: factor [OPTION]... [NUMBER]...\n" \
 
 VERSION = "factor (nix_utils) 1.0"
 
-require_relative "nix_helpers"
+require_relative '../nix_utils/nix_helpers'
 
 use_exponents = false
 numbers       = []

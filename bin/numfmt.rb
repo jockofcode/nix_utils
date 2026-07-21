@@ -30,7 +30,7 @@ USAGE = "Usage: numfmt [OPTION]... [NUMBER]...\n" \
 
 VERSION = "numfmt (nix_utils) 1.0"
 
-require_relative "nix_helpers"
+require_relative '../nix_utils/nix_helpers'
 
 class NumfmtOptions
   attr_accessor :from_unit_type, :to_unit_type, :from_unit_mult, :to_unit_mult
