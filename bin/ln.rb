@@ -13,7 +13,7 @@
 #   -t DIR               specify the DIR in which to create the links
 #   --help               usage
 #
-# Compile: spinel nix_utils/ln.rb --link nix_utils/sp_file_ext.o -o nix_utils/bin/ln
+# Compile: spinel nix_utils/ln.rb --link nix_utils/sp_file_ext.c -o nix_utils/bin/ln
 # Run:
 #   ./bin/ln -s /path/to/file linkname
 #   ./bin/ln file1 file2 destdir/

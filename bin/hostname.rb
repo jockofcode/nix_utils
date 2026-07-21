@@ -10,10 +10,12 @@
 #   -d, --domain     print DNS domain name
 #   --help           usage
 #
-# Compile: spinel nix_utils/hostname.rb -o nix_utils/bin/hostname
+# Compile: spinel nix_utils/hostname.rb --link nix_utils/sp_proc_ext.c -o nix_utils/bin/hostname
 # Run:
 #   ./bin/hostname
 #   ./bin/hostname -s
+
+require_relative '../nix_utils/proc_ext'
 
 USAGE = "Usage: hostname [OPTION]... [NAME]\n" \
         "Show or set the system hostname.\n" \
@@ -81,10 +83,9 @@ end
 opts, args = parse_argv(ARGV)
 
 if args.length > 0
-  # Setting hostname — requires system command
-  new_name = args[0]
-  result = system("hostname #{new_name}")
-  exit result ? 0 : 1
+  new_name = "" + args[0]
+  rc = ProcExt.sethostname(new_name)
+  exit rc == 0 ? 0 : 1
 end
 
 hostname = get_hostname

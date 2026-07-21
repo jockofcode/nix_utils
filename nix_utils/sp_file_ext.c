@@ -1,14 +1,9 @@
-/* sp_file_ext.c -- Missing File class methods for the Spinel runtime.
+/* nix_utils/sp_file_ext.c -- Missing File class methods for the Spinel runtime.
  *
  * Implements the POSIX operations that sp_io.h omits: readlink, symlink,
  * link, stat/lstat (as formatted strings), chmod, and utime.  These are
- * bound to Ruby via native_func declarations in file_ext.rb and linked in
- * with `spinel ... --link nix_utils/sp_file_ext.o`.
- *
- * Include path: -I $SPINEL_LIB/lib   (where spinel/runtime.h lives under lib/)
- * Compile:  cc -c sp_file_ext.c -I$SPINEL_LIB/lib -o sp_file_ext.o
- * The SPINEL_LIB path is ~/.asdf/installs/spinel/master/lib/spinel on a
- * typical asdf-managed install.
+ * bound to Ruby via native_func declarations in nix_utils/file_ext.rb and
+ * passed to Spinel with `--link nix_utils/sp_file_ext.c`.
  */
 
 #include "spinel/runtime.h"  /* sp_str_alloc, sp_str_alloc_raw, sp_str_set_len */

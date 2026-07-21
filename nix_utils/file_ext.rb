@@ -1,9 +1,7 @@
 # file_ext.rb -- native_func bindings for File methods missing in Spinel.
 #
 # COMPILATION
-#   SPINEL_LIB=~/.asdf/installs/spinel/master/lib/spinel
-#   cc -c nix_utils/sp_file_ext.c -I$SPINEL_LIB/lib -o nix_utils/sp_file_ext.o
-#   spinel nix_utils/tool.rb --link nix_utils/sp_file_ext.o -o nix_utils/bin/tool
+#   spinel nix_utils/tool.rb --link nix_utils/sp_file_ext.c -o nix_utils/bin/tool
 #
 # HOW THE DUAL-RUNTIME TRICK WORKS
 #   `def self.native_func(*args); end` is a no-op in CRuby.
@@ -67,8 +65,7 @@ module FileExt
   def self.link(src, dst)
     csrc = "" + src
     cdst = "" + dst
-    system("/bin/ln " + csrc + " " + cdst)
-    0
+    system("/bin/ln " + csrc + " " + cdst + " 2>/dev/null") ? 0 : 1
   end
 
   def self.chmod(mode, path)

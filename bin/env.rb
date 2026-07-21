@@ -1,8 +1,8 @@
 # env.rb, print the environment or set variables (GNU env, Spinel port).
 #
-# With no COMMAND, prints all environment variables (one per line). The exec
-# path is not available in a compiled binary, so running a command with a
-# modified environment delegates to the shell via system().
+# With no COMMAND, prints all environment variables (one per line). Running a
+# command with a modified environment uses ProcExt.exec_shell, which replaces
+# the current process via execl(3) rather than forking a child.
 #
 # Flags:
 #   -i, --ignore-environment  start with an empty environment
@@ -11,11 +11,13 @@
 #   -C DIR, --chdir=DIR       change working directory to DIR before running command
 #   --help                    usage
 #
-# Compile: spinel nix_utils/env.rb -o nix_utils/bin/env
+# Compile: spinel nix_utils/env.rb --link nix_utils/sp_proc_ext.c -o nix_utils/bin/env
 # Run:
 #   ./bin/env
 #   ./bin/env -i PATH=/usr/bin
 #   ./bin/env -u HOME
+
+require_relative '../nix_utils/proc_ext'
 
 USAGE = "Usage: env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]\n" \
         "Print or set the environment.\n" \
@@ -119,8 +121,8 @@ if cmd_args.length > 0
   if opts.chdir
     Dir.chdir("" + opts.chdir)
   end
-  result = system(env_prefix + " " + quoted.join(" "))
-  exit result ? 0 : 1
+  ProcExt.exec_shell(env_prefix + " " + quoted.join(" "))
+  exit 1
 else
   term = opts.null_delim ? "\0" : "\n"
   env.keys.sort.each do |k|

@@ -18,7 +18,7 @@
 #   -t DIR               copy into DIR instead of last argument being the dest
 #   --help               usage
 #
-# Compile: spinel nix_utils/cp.rb --link nix_utils/sp_file_ext.o -o nix_utils/bin/cp
+# Compile: spinel nix_utils/cp.rb --link nix_utils/sp_file_ext.c -o nix_utils/bin/cp
 # Run:
 #   ./bin/cp src.txt dest.txt
 #   ./bin/cp -r srcdir destdir
@@ -134,6 +134,18 @@ def parse_argv(argv)
   [opts, sources]
 end
 
+def preserve_attrs(src, dst)
+  st = FileExt.stat_str(src).split
+  return if st.empty?
+  mode = st[0].to_i(8) & 07777
+  uid  = st[2].to_i
+  gid  = st[3].to_i
+  src_st = File.stat(src)
+  File.chmod(mode, dst)
+  File.chown(uid, gid, dst)
+  File.utime(src_st.atime, src_st.mtime, dst)
+end
+
 def copy_file(src, dst, opts)
   csrc = "" + src
   cdst = "" + dst
@@ -176,10 +188,7 @@ def copy_file(src, dst, opts)
     f = File.open(cdst, "w")
     f.write(content)
     f.close
-    if opts.preserve
-      # File.stat / File.utime / File.chmod not in Spinel; delegate to system cp -p.
-      system("/bin/cp -p " + csrc + " " + cdst)
-    end
+    preserve_attrs(csrc, cdst) if opts.preserve
   end
   puts "cp: '#{csrc}' -> '#{cdst}'" if opts.verbose
 end
@@ -197,9 +206,7 @@ def copy_recursive(src, dst, opts)
       next if centry == "." || centry == ".."
       copy_recursive(csrc + "/" + centry, cdst + "/" + centry, opts)
     end
-    if opts.preserve
-      system("/bin/cp -p " + csrc + " " + cdst)
-    end
+    preserve_attrs(csrc, cdst) if opts.preserve
   else
     copy_file(csrc, cdst, opts)
   end

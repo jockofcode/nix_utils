@@ -1,5 +1,6 @@
 PROJECT_ROOT = File.expand_path('..', File.dirname(__FILE__))
 SYT_TMP = "/tmp/nix_sys_test"
+PROC_EXT_C = File.join(PROJECT_ROOT, 'nix_utils', 'sp_proc_ext.c')
 system("mkdir -p '#{SYT_TMP}'")
 
 $last_exit = 0
@@ -38,6 +39,23 @@ rescue
   ""
 end
 
+def sy_rn_p(name, args = nil, stdin = nil)
+  sin = "#{SYT_TMP}/stdin"
+  act = "#{SYT_TMP}/act"
+  cmd = "spinel --link '#{PROC_EXT_C}' -E '#{sy_tool(name)}'"
+  cmd = cmd + " #{args}" if args
+  if stdin
+    f = File.open(sin, 'wb'); f.write(stdin); f.close
+    cmd = cmd + " < '#{sin}' > '#{act}' 2>/dev/null"
+  else
+    cmd = cmd + " < /dev/null > '#{act}' 2>/dev/null"
+  end
+  system(cmd)
+  f2 = File.open(act, 'rb'); r = f2.read; f2.close; r
+rescue
+  ""
+end
+
 def sy_ck(label, expected, actual)
   if expected == actual
     puts "#{label}:ok"
@@ -51,7 +69,7 @@ whoami_out = sy_rn("whoami").chomp
 sy_ck "whoami non-empty", true, whoami_out.length > 0
 
 # ── hostname ────────────────────────────────────────────────────────────────
-hostname_out = sy_rn("hostname").chomp
+hostname_out = sy_rn_p("hostname").chomp
 sy_ck "hostname non-empty", true, hostname_out.length > 0
 
 # ── uname ───────────────────────────────────────────────────────────────────
@@ -61,9 +79,9 @@ uname_a = sy_rn("uname", "-a")
 sy_ck "uname -a multiple words", true, uname_a.split.length >= 3
 
 # ── env ─────────────────────────────────────────────────────────────────────
-env_out = sy_rn("env")
+env_out = sy_rn_p("env")
 sy_ck "env lists variables", true, env_out.include?("=")
-sy_ck "env -i with var", "FOO=bar\n", sy_rn("env", "-i FOO=bar")
+sy_ck "env -i with var", "FOO=bar\n", sy_rn_p("env", "-i FOO=bar")
 
 # ── id ──────────────────────────────────────────────────────────────────────
 id_out = sy_rn("id")

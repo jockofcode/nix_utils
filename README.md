@@ -94,8 +94,8 @@ With `asdf`:
 
 ```bash
 asdf plugin add spinel https://github.com/jockofcode/asdf-spinel
-asdf install spinel latest
-asdf set -u spinel latest   # make it the default (~/.tool-versions)
+asdf install spinel master
+asdf set -u spinel master   # make it the default (~/.tool-versions)
 ```
 
 Or build it from source:
@@ -143,10 +143,12 @@ spin install
 ```
 nix_utils/
   spin.toml          Project settings
-  sp_file_ext.c      Native C code for file operations not in Spinel yet
   nix_utils/
     nix_helpers.rb   Shared helper functions used by many tools
-    file_ext.rb      Bindings to the native C file operations
+    file_ext.rb      Bindings to native C file operations
+    sp_file_ext.c    Native C code for file operations not in Spinel yet
+    proc_ext.rb      Bindings to native C process operations
+    sp_proc_ext.c    Native C code for process operations not in Spinel yet
     checksum_tool.rb Shared code for all the checksum tools (md5sum, sha*sum)
   bin/
     cat.rb           Each file here is one tool

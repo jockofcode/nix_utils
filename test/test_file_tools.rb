@@ -1,6 +1,6 @@
 PROJECT_ROOT = File.expand_path('..', File.dirname(__FILE__))
 NFT_TMP = "/tmp/nix_file_test"
-EXT_O = File.join(PROJECT_ROOT, 'sp_file_ext.o')
+EXT_C = File.join(PROJECT_ROOT, 'nix_utils', 'sp_file_ext.c')
 system("mkdir -p '#{NFT_TMP}'")
 
 $last_exit = 0
@@ -13,7 +13,7 @@ def ft_rp(name, stdin_data, args = nil)
   sin = "#{NFT_TMP}/stdin"
   act = "#{NFT_TMP}/act"
   f = File.open(sin, 'wb'); f.write(stdin_data); f.close
-  cmd = "spinel --link '#{EXT_O}' -E '#{ft_tool(name)}'"
+  cmd = "spinel --link '#{EXT_C}' -E '#{ft_tool(name)}'"
   cmd = cmd + " #{args}" if args
   cmd = cmd + " < '#{sin}' > '#{act}' 2>/dev/null"
   system(cmd)
@@ -25,7 +25,7 @@ end
 def ft_rn(name, args = nil, stdin = nil)
   sin = "#{NFT_TMP}/stdin"
   act = "#{NFT_TMP}/act"
-  cmd = "spinel --link '#{EXT_O}' -E '#{ft_tool(name)}'"
+  cmd = "spinel --link '#{EXT_C}' -E '#{ft_tool(name)}'"
   cmd = cmd + " #{args}" if args
   if stdin
     f = File.open(sin, 'wb'); f.write(stdin); f.close
@@ -177,7 +177,7 @@ ft_ck "realpath existing dir", "#{rp_expected}\n", ft_rn("realpath", "'#{rp_dir}
 rp_miss = ft_rn("realpath", "-m '#{rp_dir}/nonexistent'")
 ft_ck "realpath -m missing", true, rp_miss.length > 0
 _rp_ec = "#{NFT_TMP}/rp_ec"
-system("spinel --link '#{EXT_O}' -E '#{ft_tool("realpath")}' -e '#{rp_dir}/nonexistent' > /dev/null 2>&1; echo $? > '#{_rp_ec}'")
+system("spinel --link '#{EXT_C}' -E '#{ft_tool("realpath")}' -e '#{rp_dir}/nonexistent' > /dev/null 2>&1; echo $? > '#{_rp_ec}'")
 ft_ck "realpath -e missing exit", true, File.read(_rp_ec).to_i != 0
 system("rm -rf '#{rp_dir}'")
 

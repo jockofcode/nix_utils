@@ -12,7 +12,7 @@
 #   -z, --zero                   NUL-terminate output lines instead of newline
 #   --help                       usage
 #
-# Compile: spinel nix_utils/readlink.rb --link nix_utils/sp_file_ext.o -o nix_utils/bin/readlink
+# Compile: spinel nix_utils/readlink.rb --link nix_utils/sp_file_ext.c -o nix_utils/bin/readlink
 # Run:
 #   ./bin/readlink /etc/localtime
 #   ./bin/readlink -f relative/path
