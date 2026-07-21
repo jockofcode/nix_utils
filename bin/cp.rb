@@ -153,9 +153,7 @@ def copy_file(src, dst, opts)
     return
   end
   if opts.update && File.exist?(cdst)
-    # File.stat.mtime not in Spinel; delegate to system cp -u.
-    system("/bin/cp -u " + csrc + " " + cdst)
-    return
+    return if File.stat(csrc).mtime <= File.stat(cdst).mtime
   end
 
   if opts.no_clobber && File.exist?(cdst)

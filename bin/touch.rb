@@ -185,38 +185,39 @@ if files.empty?
   exit 1
 end
 
-# Build a touch(1) command for timestamps and reference-file support.
-# File.stat / File.utime are not available in the Spinel runtime, so
-# timestamp mutation delegates to the OS /usr/bin/touch.
-touch_flags = ""
-if opts.ref_file
-  if !File.exist?(opts.ref_file)
-    STDERR.puts "touch: failed to get attributes of '#{opts.ref_file}': No such file or directory"
-    exit 1
-  end
-  touch_flags = touch_flags + " -r " + opts.ref_file
-elsif opts.time
-  # Format as [[CC]YY]MMDDhhmm.ss for touch -t; use strftime when available.
-  t = opts.time
-  ts = t.strftime("%Y%m%d%H%M.%S")
-  touch_flags = touch_flags + " -t " + ts
-end
-touch_flags = touch_flags + " -a" if opts.access_only
-touch_flags = touch_flags + " -m" if opts.mod_only
-touch_flags = touch_flags + " -h" if opts.no_deref
-
 exit_code = 0
 files.each do |name|
   cname = "" + name
   exists = File.exist?(cname)
   if !exists
     next if opts.no_create
-    f = File.open(cname, "w")
-    f.close
+    f = File.open(cname, "w"); f.close
+    # Newly created file has current timestamps; skip utime unless a specific time was requested.
+    next unless opts.ref_file || opts.time
   end
-  if touch_flags != "" || exists
-    system("/usr/bin/touch" + touch_flags + " " + cname)
+
+  cur_st = File.stat(cname)
+  new_atime = Time.now
+  new_mtime = new_atime
+
+  if opts.ref_file
+    cref = "" + opts.ref_file
+    if !File.exist?(cref)
+      STDERR.puts "touch: failed to get attributes of '#{opts.ref_file}': No such file or directory"
+      exit 1
+    end
+    ref_st = File.stat(cref)
+    new_atime = ref_st.atime
+    new_mtime = ref_st.mtime
+  elsif opts.time
+    new_atime = opts.time
+    new_mtime = opts.time
   end
+
+  new_atime = cur_st.atime if opts.mod_only && !opts.access_only
+  new_mtime = cur_st.mtime if opts.access_only && !opts.mod_only
+
+  File.utime(new_atime, new_mtime, cname)
 end
 
 exit exit_code

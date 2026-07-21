@@ -104,9 +104,7 @@ def move_file(src, dst, opts)
   csrc = "" + src
   cdst = "" + dst
   if opts.update && File.exist?(cdst)
-    # File.stat.mtime not available in Spinel; delegate timestamp check to system mv -u.
-    system("/bin/mv -u " + csrc + " " + cdst)
-    return
+    return if File.stat(csrc).mtime <= File.stat(cdst).mtime
   end
   if opts.no_clobber && File.exist?(cdst)
     return
